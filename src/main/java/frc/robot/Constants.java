@@ -167,7 +167,7 @@ public final class Constants {
       
     } 
 
-    //Constants for Auto
+    //Constants for Auto.
     public static final class AutoConstants {
 
       /**Registered commands. Used in Robotcontainer to register commands into
