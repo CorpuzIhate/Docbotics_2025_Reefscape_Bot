@@ -56,5 +56,19 @@
     "edu.wpi.first.math.proto.*",
     "edu.wpi.first.math.**.proto.*",
     "edu.wpi.first.math.**.struct.*",
+  ],
+  "java.format.settings.url": "eclipse-formatter.xml",
+  "[java]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "cSpell.words": [
+    "absoulute",
+    "Advantagescope",
+    "AHRS",
+    "Brushless",
+    "feedforwards",
+    "Odometry",
+    "Pathplanner"
   ]
 }
