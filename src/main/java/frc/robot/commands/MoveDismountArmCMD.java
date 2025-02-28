@@ -42,8 +42,8 @@ public class MoveDismountArmCMD extends Command{
         double currentDismountArmPos_degrees = dismountArmMotor.getAbsoluteEncoder().getPosition();
         //telemetry
         SmartDashboard.putData(dismountController);
-        SmartDashboard.putNumber("armPostionError_degrees",dismountController.getError());
-        SmartDashboard.putNumber("armPostion_degrees",currentDismountArmPos_degrees);
+        SmartDashboard.putNumber("dismountPositionError_degrees",dismountController.getError());
+        SmartDashboard.putNumber("dismountPosition_degrees",currentDismountArmPos_degrees);
         //drive arm Motor to setpoint based on arm controller
         double output = dismountController.calculate(currentDismountArmPos_degrees, setpoint_degrees);
         dismountArmMotor.set(output);       
