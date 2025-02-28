@@ -20,15 +20,36 @@
         "y": 5.13184659090909
       },
       "prevControl": {
-        "x": 5.860017123287671,
-        "y": 6.857341609589041
+        "x": 6.300084045005381,
+        "y": 6.652582420717174
+      },
+      "nextControl": {
+        "x": 4.736505681818182,
+        "y": 4.214460227272727
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.435909090909091,
+        "y": 6.956647727272727
+      },
+      "prevControl": {
+        "x": 7.010028409090911,
+        "y": 7.385426136363637
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.1542553191489315,
+      "rotationDegrees": -117.10210148494549
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
@@ -42,6 +63,12 @@
           "name": "scoreL2Reef"
         }
       }
+    },
+    {
+      "name": "outtake",
+      "waypointRelativePos": 0.9439621152328312,
+      "endWaypointRelativePos": 1.2596685082872927,
+      "command": null
     }
   ],
   "globalConstraints": {
@@ -54,7 +81,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.99999999999999
+    "rotation": 119.99999999999999
   },
   "reversed": false,
   "folder": null,

@@ -29,12 +29,6 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "Copy of MoveToReef"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "resetSwerveModuleSpeedsCMD"
