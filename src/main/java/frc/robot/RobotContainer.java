@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
@@ -12,6 +13,7 @@ import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
 import frc.robot.commands.powerCoralIntakeCMD;
 import frc.robot.commands.ManageLimeLightCMD;
+import frc.robot.commands.MoveDismountArmCMD;
 import frc.robot.commands.PitchIntakeCMD;
 import frc.robot.commands.ResetHeadingCMD;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -20,9 +22,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
 import frc.robot.subsystems.CoralPitcherIntakeSub;
+import frc.robot.subsystems.DismountSub;
 import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
@@ -46,8 +51,11 @@ public class RobotContainer {
   // private final ArmSub armsub = new ArmSub();
   private final LimelightSub limelightSub = new LimelightSub();
   public final ElevatorSub elevatorSub = new ElevatorSub();
+  private final DismountSub dismountSub = new DismountSub();
+
   private final SendableChooser<Command> autoChooser;
   private final Joystick driverJoyStick = new Joystick(OIConstants.kDriverControllerPort);
+  
 
   public RobotContainer() {
 
@@ -148,6 +156,24 @@ public class RobotContainer {
     new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
       new ResetHeadingCMD(swerveSub)
     );
+
+    /**Command that dismounts Algea from the reef. */
+    Command dismountAlgeaCMD = 
+    new SequentialCommandGroup(
+      /* Moves the dismount arm up and holds its position. */
+      new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);}),
+      new MoveDismountArmCMD(dismountSub, DismountConstants.dismountAlegeSetpoint_degrees),
+      new ParallelCommandGroup(
+        /* run the dismount spin motor for 1 second, then return the dismount motor  to 0 */
+        new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);}).withTimeout(1),
+        new MoveDismountArmCMD(dismountSub, 0),
+        new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);})
+      )
+    );
+    /*checks whether up on the d-pad is pressed. */
+    Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
+    /**dismount Algea when up on the d-pad is pressed. */
+    isDpadUpPressed.onTrue(dismountAlgeaCMD);
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));

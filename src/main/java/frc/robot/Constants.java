@@ -213,7 +213,21 @@ public final class Constants {
       public static final double L2Pitch_degrees = 0;
       public static final double L3Pitch_degrees = 0;
     }
+    
+    public static final class DismountConstants {
+      /** CAN ID of the intake motor that consumes the coral. */
+      public static final int kDismountSpinMotorPort = 13;
+      /** CAN ID of the intake motor pitches the intake. */
+      public static final int kDismountArmMotorPort = 16;
+      /* PID coefficients of the intake pitcher controller. */
+  
+      public static final double dismount_kP = 0.001;
+      public static final double dismount_kI = 0;
+      public static final double dismount_kD = 0.0000525;
 
+      public static final double dismountAlegeSetpoint_degrees = 0;
+    }
+      
   }
 
   public static final class AutoConstants {
