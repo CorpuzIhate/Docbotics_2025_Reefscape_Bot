@@ -5,27 +5,21 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "resetSwerveModuleSpeedsCMD"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "MoveToReef"
+            "pathName": "Center_I"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "consumeCoralAtCoralStation"
+            "name": "outtake"
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "Intake"
+            "waitTime": 0.8
           }
         },
         {

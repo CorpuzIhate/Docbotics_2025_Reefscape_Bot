@@ -148,9 +148,13 @@ public class RobotContainer {
     new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
       new ResetHeadingCMD(swerveSub)
     );
-    SmartDashboard.putData("moveForwardAndScore1Coral" ,new PathPlannerAuto("auto_moveForwardAndScore1Coral"));
-    SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("auto_MoveForward"));
-    
+
+    SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
+    SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
+
+    SmartDashboard.putData("Center_1Coral_I2_Reef" ,new PathPlannerAuto("Center_1Coral_I2_Reef"));
+
+    SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     
   }
 

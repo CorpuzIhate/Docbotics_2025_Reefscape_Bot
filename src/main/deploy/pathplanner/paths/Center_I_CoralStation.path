@@ -36,7 +36,7 @@
         "y": 6.956647727272727
       },
       "prevControl": {
-        "x": 7.010028409090911,
+        "x": 7.010028409090914,
         "y": 7.385426136363637
       },
       "nextControl": null,
@@ -47,7 +47,7 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 1.1542553191489315,
-      "rotationDegrees": -117.10210148494549
+      "rotationDegrees": -118.59470745912456
     }
   ],
   "constraintZones": [],
@@ -66,14 +66,19 @@
     },
     {
       "name": "outtake",
-      "waypointRelativePos": 0.9439621152328312,
-      "endWaypointRelativePos": 1.2596685082872927,
-      "command": null
+      "waypointRelativePos": 1.1870560378847685,
+      "endWaypointRelativePos": 1.4301499605367045,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "outtake"
+        }
+      }
     }
   ],
   "globalConstraints": {
     "maxVelocity": 0.5,
-    "maxAcceleration": 3.0,
+    "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
