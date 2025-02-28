@@ -27,10 +27,12 @@ import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {
@@ -44,6 +46,7 @@ public class RobotContainer {
   // private final ArmSub armsub = new ArmSub();
   private final LimelightSub limelightSub = new LimelightSub();
   public final ElevatorSub elevatorSub = new ElevatorSub();
+  private final SendableChooser<Command> autoChooser;
   private final Joystick driverJoyStick = new Joystick(OIConstants.kDriverControllerPort);
 
   public RobotContainer() {
@@ -82,6 +85,9 @@ public class RobotContainer {
         () -> driverJoyStick.getRawAxis(OIConstants.kOutakeAxis) ));
 
     configureBindings();
+
+      autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+    SmartDashboard.putData("Auto Mode", autoChooser);
   }
 
   private void configureBindings() {
@@ -142,14 +148,15 @@ public class RobotContainer {
     new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
       new ResetHeadingCMD(swerveSub)
     );
-
+    SmartDashboard.putData("moveForwardAndScore1Coral" ,new PathPlannerAuto("auto_moveForwardAndScore1Coral"));
+    SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("auto_MoveForward"));
     
     
   }
 
   public Command getAutonomousCommand() {
 
-    return new PathPlannerAuto("auto_moveForwardAndScore1Coral");
+    return autoChooser.getSelected();
 
   }
 }
