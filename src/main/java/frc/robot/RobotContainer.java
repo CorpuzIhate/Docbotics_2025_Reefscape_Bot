@@ -85,6 +85,8 @@ public class RobotContainer {
     dismountSub.setDefaultCommand(
       new MoveDismountArmCMD(dismountSub)
     );
+
+    
     /**
      * By default the the elevator will be in Idle state
      * where it just tries to maintain the intake height set point.
@@ -178,18 +180,25 @@ public class RobotContainer {
     new SequentialCommandGroup(
       new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
       new ConditionalCommand(
-        new InstantCommand(() -> {dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
-        new InstantCommand(() -> {dismountSub.setSetpoint(0);}), 
+        new InstantCommand(() -> {
+          dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);
+          dismountSpinSub.getDismountSpinMotor().set(0.6);}),
+        new InstantCommand(() -> {
+          dismountSub.setSetpoint(0);
+          dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
     );
     Command dismountAlgeaL3CMD = 
     new SequentialCommandGroup(
       new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
       new ConditionalCommand(
-        new InstantCommand(() -> {dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);}),
-        new InstantCommand(() -> {dismountSub.setSetpoint(0);}), 
+        new InstantCommand(() -> {
+          dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);
+          dismountSpinSub.getDismountSpinMotor().set(0.6);}),
+        new InstantCommand(() -> {
+          dismountSub.setSetpoint(0);
+          dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
-
     );
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
@@ -197,11 +206,11 @@ public class RobotContainer {
     Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
     /**dismount Algea when up on the d-pad is pressed. */
-    isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
+
 
     isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
 
-    isDpadRightPressed.whileTrue(new powerDismountSpinMotorCMD(dismountSpinSub, 0.6));
+    isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
