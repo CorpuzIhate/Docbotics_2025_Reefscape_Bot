@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
 import frc.robot.subsystems.CoralPitcherIntakeSub;
+import frc.robot.subsystems.DismountSpinSub;
 import frc.robot.subsystems.DismountSub;
 import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
@@ -57,6 +58,8 @@ public class RobotContainer {
   private final LimelightSub limelightSub = new LimelightSub();
   public final ElevatorSub elevatorSub = new ElevatorSub();
   private final DismountSub dismountSub = new DismountSub();
+  private final DismountSpinSub dismountSpinSub = new DismountSpinSub();
+
 
   private final SendableChooser<Command> autoChooser;
   private final Joystick driverJoyStick = new Joystick(OIConstants.kDriverControllerPort);
@@ -194,11 +197,11 @@ public class RobotContainer {
     Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
     /**dismount Algea when up on the d-pad is pressed. */
-    isDpadUpPressed.onTrue(dismountAlgeaL2CMD);
+    isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
-    isDpadLeftPressed.onTrue(dismountAlgeaL3CMD);
+    isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
 
-    isDpadRightPressed.whileTrue(new powerDismountSpinMotorCMD(dismountSub, -0.6));
+    isDpadRightPressed.whileTrue(new powerDismountSpinMotorCMD(dismountSpinSub, 0.6));
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
