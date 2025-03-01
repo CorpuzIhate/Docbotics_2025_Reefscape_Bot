@@ -42,7 +42,6 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotInit() {
-    CameraServer.startAutomaticCapture();
 
     // logger code 
 
