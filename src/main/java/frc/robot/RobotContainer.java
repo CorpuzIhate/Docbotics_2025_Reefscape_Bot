@@ -12,6 +12,7 @@ import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
 import frc.robot.commands.powerCoralIntakeCMD;
+import frc.robot.commands.powerDismountSpinMotorCMD;
 import frc.robot.commands.ManageLimeLightCMD;
 import frc.robot.commands.MoveDismountArmCMD;
 import frc.robot.commands.PitchIntakeCMD;
@@ -19,6 +20,7 @@ import frc.robot.commands.ResetHeadingCMD;
 import frc.robot.commands.SwerveJoystickCmd;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -32,6 +34,8 @@ import frc.robot.subsystems.DismountSub;
 import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
+
+import java.time.Instant;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -169,44 +173,32 @@ public class RobotContainer {
     /**Command that dismounts Algea from the reef. */
     Command dismountAlgeaL2CMD = 
     new SequentialCommandGroup(
-      /* Moves the dismount arm up and holds its position. */
-      new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);}),
-      new InstantCommand(() ->{dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
-      new WaitCommand(0.25),
-        /* run the dismount spin motor for 1 second, then return the dismount motor  to 0 */
-       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(-1);}),
-       new WaitCommand(0.75),
-       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0);}),
-
-      new InstantCommand(() ->{dismountSub.setSetpoint(0);}),
-      new WaitCommand(1),
-      new InstantCommand(() -> {dismountSub.setIsHoldPosition(false);})
-      
+      new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
+      new ConditionalCommand(
+        new InstantCommand(() -> {dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
+        new InstantCommand(() -> {dismountSub.setSetpoint(0);}), 
+        ()-> { return dismountSub.getIsHoldPosition();})
     );
     Command dismountAlgeaL3CMD = 
     new SequentialCommandGroup(
-      /* Moves the dismount arm up and holds its position. */
-      new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);}),
-      new InstantCommand(() ->{dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);}),
-      new WaitCommand(0.25),
-        /* run the dismount spin motor for 1 second, then return the dismount motor  to 0 */
-       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(-1);}),
-       new WaitCommand(0.75),
-       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0);}),
+      new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
+      new ConditionalCommand(
+        new InstantCommand(() -> {dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
+        new InstantCommand(() -> {dismountSub.setSetpoint(0);}), 
+        ()-> { return dismountSub.getIsHoldPosition();})
 
-      new InstantCommand(() ->{dismountSub.setSetpoint(0);}),
-      new WaitCommand(1),
-      new InstantCommand(() -> {dismountSub.setIsHoldPosition(false);})
-      
     );
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
     Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
+    Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
     /**dismount Algea when up on the d-pad is pressed. */
     isDpadUpPressed.onTrue(dismountAlgeaL2CMD);
 
-    isDpadRightPressed.onTrue(dismountAlgeaL3CMD);
+    isDpadLeftPressed.onTrue(dismountAlgeaL3CMD);
+
+    isDpadRightPressed.whileTrue(new powerDismountSpinMotorCMD(dismountSub, -0.6));
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
