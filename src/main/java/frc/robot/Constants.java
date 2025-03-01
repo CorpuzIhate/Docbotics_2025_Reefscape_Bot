@@ -87,8 +87,8 @@ public final class Constants {
         public static final double kPhysicalMaxSpeedMetersPerSecond = 5;
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond  / 2;
-        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 3;
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond  / 1.3;
+        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 1.5;
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 4;
         public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 4;
 
@@ -225,9 +225,9 @@ public final class Constants {
       public static final double dismount_kI = 0;
       public static final double dismount_kD = 0.0000525;
 
-      public static final double dismountAlegeSetpointL2_degrees = 30;
+      public static final double dismountAlegeSetpointL2_degrees = 37;
 
-      public static final double dismountAlegeSetpointL3_degrees = 70;
+      public static final double dismountAlegeSetpointL3_degrees = 75;
     }
       
   }
