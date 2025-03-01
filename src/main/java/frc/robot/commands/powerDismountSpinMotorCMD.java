@@ -53,7 +53,7 @@ public class powerDismountSpinMotorCMD extends Command {
 
     @Override
     public boolean isFinished() {
-
+        
         return false;
     }
 }
