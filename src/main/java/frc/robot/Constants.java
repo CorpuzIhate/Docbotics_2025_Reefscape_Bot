@@ -224,6 +224,7 @@ public final class Constants {
       public static final double dismount_kP = 0.012;
       public static final double dismount_kI = 0;
       public static final double dismount_kD = 0.0000525;
+      public static final double maxDismountPower =0.5;
 
       public static final double dismountAlegeSetpointL2_degrees = 37;
 
