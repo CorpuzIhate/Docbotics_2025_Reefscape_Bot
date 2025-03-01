@@ -43,8 +43,22 @@ public class MoveDismountArmCMD extends Command{
         SmartDashboard.putNumber("dismountPositionError_degrees",dismountController.getError());
         SmartDashboard.putNumber("dismountPosition_degrees",currentDismountArmPos_degrees);
         //drive arm Motor to setpoint based on arm controller
+        if(!dismountSub.getIsHoldPosition()){
+            
+            dismountArmMotor.set(0);  
+            return;     
+
+        }
         double output = dismountController.calculate(currentDismountArmPos_degrees, dismountSub.getSetpoint());
-        dismountArmMotor.set(output);       
+        
+        /*If the subsystem wants to hold its position,
+         * power the dismount arm, if not, disable the arm.
+         */
+
+            dismountArmMotor.set(output);       
+
+        
+  
     }
     @Override
     public void end(boolean interrupted){
@@ -58,16 +72,7 @@ public class MoveDismountArmCMD extends Command{
     public boolean isFinished(){
         
 
-        /*  If we want dismount arm to maintain its angular positon,
-         * continue powering the arm.
-        */
-        if(!dismountSub.getIsHoldPosition()){
-            return false;
-        }
-        //if the dismount arm motor is within 0.5 degrees of the setpoint stop the dismount arm Motor
-        if(Math.abs(dismountController.getError()) <= 0.5){
-            dismountArmMotor.set(0);
-        }
+
         return false;
     }
 }
