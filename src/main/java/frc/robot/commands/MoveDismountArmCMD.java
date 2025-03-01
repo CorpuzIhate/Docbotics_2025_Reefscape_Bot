@@ -6,6 +6,7 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.subsystems.DismountSub;
 
 public class MoveDismountArmCMD extends Command{
@@ -44,7 +45,10 @@ public class MoveDismountArmCMD extends Command{
         SmartDashboard.putNumber("dismountPosition_degrees",currentDismountArmPos_degrees);
 
         double output = dismountController.calculate(currentDismountArmPos_degrees, dismountSub.getSetpoint());
-        
+        if(Math.abs(output) >= DismountConstants.maxDismountPower )
+        {
+            output =  DismountConstants.maxDismountPower * Math.signum(output);
+        }
         /*If the subsystem wants to hold its position,
          * power the dismount arm, if not, disable the arm.
          */
