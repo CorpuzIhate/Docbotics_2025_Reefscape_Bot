@@ -183,7 +183,7 @@ public class RobotContainer {
     new SequentialCommandGroup(
       new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
       new ConditionalCommand(
-        new InstantCommand(() -> {dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
+        new InstantCommand(() -> {dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);}),
         new InstantCommand(() -> {dismountSub.setSetpoint(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
 
