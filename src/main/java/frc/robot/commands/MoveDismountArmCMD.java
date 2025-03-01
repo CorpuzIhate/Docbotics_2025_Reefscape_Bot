@@ -42,13 +42,7 @@ public class MoveDismountArmCMD extends Command{
         SmartDashboard.putData(dismountController);
         SmartDashboard.putNumber("dismountPositionError_degrees",dismountController.getError());
         SmartDashboard.putNumber("dismountPosition_degrees",currentDismountArmPos_degrees);
-        //drive arm Motor to setpoint based on arm controller
-        if(!dismountSub.getIsHoldPosition()){
-            
-            dismountArmMotor.set(0);  
-            return;     
 
-        }
         double output = dismountController.calculate(currentDismountArmPos_degrees, dismountSub.getSetpoint());
         
         /*If the subsystem wants to hold its position,
