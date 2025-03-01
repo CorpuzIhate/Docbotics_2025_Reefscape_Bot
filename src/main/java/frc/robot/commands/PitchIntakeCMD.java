@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.CoralPitcherIntakeSub;
+import frc.robot.subsystems.DismountSub;
 
 public class PitchIntakeCMD extends Command {
     private final CoralPitcherIntakeSub intakeSub;

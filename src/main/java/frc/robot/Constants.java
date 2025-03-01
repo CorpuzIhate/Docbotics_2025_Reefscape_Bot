@@ -87,10 +87,10 @@ public final class Constants {
         public static final double kPhysicalMaxSpeedMetersPerSecond = 5;
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond  / 2;
-        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 3;
-        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 4;
-        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 4;
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond  / 1.6;
+        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 1.5;
+        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
+        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
 
     public static class autoTargetConstants {
       public static final double autoOrientKp = 0.0035;
@@ -132,6 +132,7 @@ public final class Constants {
     public static final int kMoveIntakeToLevel3Idx = 6;
 
     public static final int kMoveIntakeToCoralStationIdx = 5;
+    public static final int kSlowModeIdx = 4;
 
 
     public static final double kDeadband = 0.5;
@@ -212,7 +213,24 @@ public final class Constants {
       public static final double L2Pitch_degrees = 0;
       public static final double L3Pitch_degrees = 0;
     }
+    
+    public static final class DismountConstants {
+      /** CAN ID of the intake motor that dismounts the algea. */
+      public static final int kDismountSpinMotorPort = 15;
+      /** CAN ID of the intake motor pitches the dismount. */
+      public static final int kDismountArmMotorPort = 17;
+      /* PID coefficients of the intake pitcher controller. */
+  
+      public static final double dismount_kP = 0.012;
+      public static final double dismount_kI = 0;
+      public static final double dismount_kD = 0.0000525;
+      public static final double maxDismountPower =0.5;
 
+      public static final double dismountAlegeSetpointL2_degrees = 37;
+
+      public static final double dismountAlegeSetpointL3_degrees = 75;
+    }
+      
   }
 
   public static final class AutoConstants {

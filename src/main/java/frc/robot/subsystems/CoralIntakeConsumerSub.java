@@ -14,7 +14,7 @@ public class CoralIntakeConsumerSub extends SubsystemBase {
 
     /**Motor that allows the intake to consume coral. */
     private SparkMax intakeConsumerMotor = new SparkMax(IntakeConstants.kIntakeConsumerMotorPort, MotorType.kBrushless);
-
+    
     /**
      * @return the intake motor that consumes the Coral.
      */

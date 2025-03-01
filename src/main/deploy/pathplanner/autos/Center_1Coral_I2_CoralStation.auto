@@ -7,19 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "moveForwardAlot"
+            "pathName": "Center_I_CoralStation"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "consumeCoralAtCoralStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake"
+            "name": "resetSwerveModuleSpeedsCMD"
           }
         }
       ]

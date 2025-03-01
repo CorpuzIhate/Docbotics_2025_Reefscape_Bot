@@ -7,7 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MoveToReef"
+            "pathName": "Center_F"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "outtake"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.8
           }
         },
         {

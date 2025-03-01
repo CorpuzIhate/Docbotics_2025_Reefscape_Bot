@@ -27,10 +27,11 @@ public class SwerveJoystickCmd extends Command {
       public final Supplier<Double> ySpdFunction;
       public final Supplier<Double> turningSpdFunction;
       public final Supplier<Boolean> fieldOrientedFunction;
+      private final Supplier<Boolean> slowModeFunction;
       public final Supplier<Boolean> targetOrientedFunction;
       private final SlewRateLimiter xLimiter, yLimiter, turningLimiter; // slew rate limiter cap the the amount of change of a value
 
-      
+      private boolean isSlowMode;
       public static double CurrentXSpeed;
       public static double CurrentYSpeed;
       public static double CurrentTurningSpeed;
@@ -41,12 +42,14 @@ public class SwerveJoystickCmd extends Command {
           Supplier <Double> xSpdFunction,
            Supplier<Double> ySpdFunction, 
            Supplier<Double> turningSpdFunction,
+           Supplier<Boolean> slowModeFunction,
           Supplier<Boolean> fieldOrientedFunction,
           Supplier<Boolean> targetOrientedFunction) { // Supplier<Boolean> limeTargetAccessed//
         
         this.swerveSubsystem = swerveSubsystem;
         this.xSpdFunction = xSpdFunction;
         this.ySpdFunction = ySpdFunction;
+        this.slowModeFunction = slowModeFunction;
         this.turningSpdFunction = turningSpdFunction;
         this.fieldOrientedFunction = fieldOrientedFunction;
         this.targetOrientedFunction = targetOrientedFunction;
@@ -68,7 +71,7 @@ public class SwerveJoystickCmd extends Command {
   @Override
   public void execute() {
     // gett latest values from joystick
-    swerveSubsystem.orientToTarget();
+    //swerveSubsystem.orientToTarget();
     double xspeed = xSpdFunction.get();
     double yspeed = ySpdFunction.get();
     double turningSpeed = turningSpdFunction.get();
@@ -84,6 +87,17 @@ public class SwerveJoystickCmd extends Command {
     yspeed = yLimiter.calculate(yspeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond; 
     turningSpeed = turningLimiter.calculate(turningSpeed) *
      DriveConstants.kTeleDriveMaxAngularSpeedRadiansPerSecond;
+
+    //If slow mode toggle is on apply it to the modules.
+    if(slowModeFunction.get()){
+        isSlowMode = !isSlowMode;
+    }
+    if(isSlowMode){
+      xspeed *= 0.35;
+      yspeed *= 0.35;
+      turningSpeed *= 0.35;
+    }
+    
 
     //select orintatin of robot
 

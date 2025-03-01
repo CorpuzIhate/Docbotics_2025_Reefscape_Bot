@@ -52,6 +52,8 @@ public class powerCoralIntakeCMD extends Command {
         /* when command ends, stop  the intake consumer motor. */
         intakeConsumerMotor.set(0);
         intakeConsumerMotor.stopMotor();
+        SmartDashboard.putBoolean("isIntakePitcherCommandRunning", true);
+
     }
 
     @Override
