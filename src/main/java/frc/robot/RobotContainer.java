@@ -174,7 +174,7 @@ public class RobotContainer {
       new InstantCommand(() ->{dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
       new WaitCommand(0.25),
         /* run the dismount spin motor for 1 second, then return the dismount motor  to 0 */
-       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0.4);}),
+       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(-1);}),
        new WaitCommand(0.75),
        new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0);}),
 
@@ -190,7 +190,7 @@ public class RobotContainer {
       new InstantCommand(() ->{dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);}),
       new WaitCommand(0.25),
         /* run the dismount spin motor for 1 second, then return the dismount motor  to 0 */
-       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0.4);}),
+       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(-1);}),
        new WaitCommand(0.75),
        new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0);}),
 

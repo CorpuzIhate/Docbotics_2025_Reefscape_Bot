@@ -93,9 +93,9 @@ public class SwerveJoystickCmd extends Command {
         isSlowMode = !isSlowMode;
     }
     if(isSlowMode){
-      xspeed *= 0.5;
-      yspeed *= 0.5;
-      turningSpeed *= 0.5;
+      xspeed *= 0.35;
+      yspeed *= 0.35;
+      turningSpeed *= 0.35;
     }
     
 
