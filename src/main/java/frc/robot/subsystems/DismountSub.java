@@ -25,8 +25,7 @@ public class DismountSub extends SubsystemBase{
     /** Motor that pitches the dismount arm.*/
     private SparkMax dismountArmMotor = new SparkMax(DismountConstants.kDismountArmMotorPort, MotorType.kBrushless);
     /** Motor thhat spins the dismount motor.*/
-    private SparkMax dismountSpinMotor = new SparkMax(DismountConstants.kDismountSpinMotorPort, MotorType.kBrushless);
-    /**motor configuration of the dismount arm motor. */
+
     private SparkMaxConfig dismountArmMotorConfig = new SparkMaxConfig();
     /**state to determine whether the dismount should hold its position */
     private boolean isHoldPosition;
@@ -66,9 +65,7 @@ public class DismountSub extends SubsystemBase{
     }
     /**@return the motor thhat spins the dismount motor. */
 
-    public SparkMax getDismountSpinMotor(){
-        return dismountSpinMotor;
-    }
+
     /**@return PID controller that moves the dismount 
      * arm motor to its angular set points degrees.
      */
