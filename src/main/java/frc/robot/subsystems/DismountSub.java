@@ -37,6 +37,8 @@ public class DismountSub extends SubsystemBase{
         DismountConstants.dismount_kI,
         DismountConstants.dismount_kD);
 
+    private double setpoint_degrees;
+
 
     
     public DismountSub(){
@@ -86,7 +88,13 @@ public class DismountSub extends SubsystemBase{
         isHoldPosition = state;
     }
 
+    public double getSetpoint(){
+        return setpoint_degrees;
+    }
 
+    public void setSetpoint(double newSetpoint_degrees){
+        setpoint_degrees = newSetpoint_degrees;
+    }
 
 
 

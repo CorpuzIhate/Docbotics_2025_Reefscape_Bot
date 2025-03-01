@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
@@ -74,6 +75,9 @@ public class RobotContainer {
     limelightSub.setDefaultCommand(
         new ManageLimeLightCMD(limelightSub));
 
+    dismountSub.setDefaultCommand(
+      new MoveDismountArmCMD(dismountSub)
+    );
     /**
      * By default the the elevator will be in Idle state
      * where it just tries to maintain the intake height set point.
@@ -135,6 +139,11 @@ public class RobotContainer {
       {elevatorSub.setIntakeHeightSetPoint_Inches(0);
       coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(60);}));  
 
+      Command scoreL1Reef  = new ParallelCommandGroup(
+        new InstantCommand(() -> 
+        {elevatorSub.setIntakeHeightSetPoint_Inches(0);
+        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(100);}));  
+
       NamedCommands.registerCommand("setIntakePositionToDefault", setIntakePositionToDefault);
       NamedCommands.registerCommand("intake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, 0.3));
       
@@ -162,16 +171,21 @@ public class RobotContainer {
     new SequentialCommandGroup(
       /* Moves the dismount arm up and holds its position. */
       new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);}),
-      new MoveDismountArmCMD(dismountSub, DismountConstants.dismountAlegeSetpoint_degrees),
-      new ParallelCommandGroup(
+      new InstantCommand(() ->{dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);}),
+      new WaitCommand(0.25),
         /* run the dismount spin motor for 1 second, then return the dismount motor  to 0 */
-        new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);}).withTimeout(1),
-        new MoveDismountArmCMD(dismountSub, 0),
-        new InstantCommand(() -> {dismountSub.setIsHoldPosition(true);})
-      )
+       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0.4);}),
+       new WaitCommand(0.75),
+       new InstantCommand(() ->{dismountSub.getDismountSpinMotor().set(0);}),
+
+      new InstantCommand(() ->{dismountSub.setSetpoint(0);}),
+      new WaitCommand(0.5),
+      new InstantCommand(() -> {dismountSub.setIsHoldPosition(false);})
+      
     );
+    
     /*checks whether up on the d-pad is pressed. */
-    Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
+    Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
     /**dismount Algea when up on the d-pad is pressed. */
     isDpadUpPressed.onTrue(dismountAlgeaCMD);
 
