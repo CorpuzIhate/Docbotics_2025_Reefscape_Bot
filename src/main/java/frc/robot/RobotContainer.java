@@ -154,7 +154,7 @@ public class RobotContainer {
         coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(100);}));  
 
       NamedCommands.registerCommand("setIntakePositionToDefault", setIntakePositionToDefault);
-      NamedCommands.registerCommand("intake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, 0.3));
+      NamedCommands.registerCommand("intake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, -0.3).withTimeout(3));
       
 
       NamedCommands.registerCommand("outtake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, 0.3).withTimeout(0.5));
