@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.029971590909091,
-        "y": 3.955198863636363
+        "x": 5.231058020477815,
+        "y": 3.1365187713310574
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.601193181818181,
-        "y": 2.1004829545454538
+        "x": 4.7977986348122865,
+        "y": 1.6880289132795538
+      },
+      "isLocked": false,
+      "linkedName": "Reef_F"
+    },
+    {
+      "anchor": {
+        "x": 3.4241467576791806,
+        "y": 1.6889931740614328
+      },
+      "prevControl": {
+        "x": 4.1770869531492405,
+        "y": 1.7657823650325795
+      },
+      "nextControl": {
+        "x": 2.0247834227189325,
+        "y": 1.5462780168513721
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.265,
-        "y": 3.177414772727272
+        "x": 1.2165340909090911,
+        "y": 0.8241193181818176
       },
       "prevControl": {
-        "x": 5.953039772727272,
-        "y": 1.7913636363636356
+        "x": 1.8069112627986346,
+        "y": 1.4693686006825941
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "coralStation"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +49,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Pos",
-      "waypointRelativePos": 0.3251775848460924,
+      "name": "consumeCoralAtCoralStation",
+      "waypointRelativePos": 0.736486486486485,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "scoreL2Reef"
+          "name": "consumeCoralAtCoralStation"
         }
       }
     }
@@ -54,13 +70,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 123.3663660010595
+    "rotation": -126.22301257549856
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true
 }

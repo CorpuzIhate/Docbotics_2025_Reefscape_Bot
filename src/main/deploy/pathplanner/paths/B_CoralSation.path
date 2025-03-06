@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.029971590909091,
-        "y": 3.955198863636363
+        "x": 3.410284090909091,
+        "y": 4.015028409090909
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.601193181818181,
-        "y": 2.1004829545454538
+        "x": 1.51780303030303,
+        "y": 3.7200757575757577
+      },
+      "isLocked": false,
+      "linkedName": "Reef_B"
+    },
+    {
+      "anchor": {
+        "x": 2.442739898989899,
+        "y": 2.4902146464646453
+      },
+      "prevControl": {
+        "x": 2.9236761410606893,
+        "y": 3.333962439571294
+      },
+      "nextControl": {
+        "x": 1.8633838383838381,
+        "y": 1.4738005050505045
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.265,
-        "y": 3.177414772727272
+        "x": 1.2165340909090911,
+        "y": 0.8241193181818176
       },
       "prevControl": {
-        "x": 5.953039772727272,
-        "y": 1.7913636363636356
+        "x": 1.7719065656565656,
+        "y": 1.5144570707070704
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "coralStation"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +49,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Pos",
-      "waypointRelativePos": 0.3251775848460924,
+      "name": "",
+      "waypointRelativePos": 1.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "scoreL2Reef"
+          "name": "consumeCoralAtCoralStation"
         }
       }
     }
@@ -54,13 +70,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 123.3663660010595
+    "rotation": -126.22301257549856
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }
