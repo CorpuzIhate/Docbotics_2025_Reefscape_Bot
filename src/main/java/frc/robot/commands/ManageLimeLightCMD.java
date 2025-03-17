@@ -13,7 +13,7 @@ public class ManageLimeLightCMD extends Command{
     }
     @Override
     public void execute(){
-
+        //Telemetry.
         SmartDashboard.putBoolean("isTarget",LimelightHelpers.getTV("limelight") );
   
     }

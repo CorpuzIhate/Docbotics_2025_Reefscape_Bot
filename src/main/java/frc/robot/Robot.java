@@ -42,8 +42,7 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotInit() {
-
-    // logger code 
+    // Logger code.
 
     Logger.recordMetadata("ProjectName", "6110_SwerveTest_2024_02_20"); // Set a metadata value
 

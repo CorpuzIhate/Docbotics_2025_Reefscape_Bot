@@ -48,10 +48,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {
 
-  // private final CommandXboxController m_driverController =
-  // new CommandXboxController(OIConstants.kDriverControllerPort);
 
-  public final SwerveSub swerveSub = new SwerveSub();
+  // configures the different subsystem of the robot
+  private final SwerveSub swerveSub =  new SwerveSub();
   public final CoralPitcherIntakeSub coralPitcherIntakeSub = new CoralPitcherIntakeSub();
   private final CoralIntakeConsumerSub coralIntakeConsumerSub = new CoralIntakeConsumerSub();
   // private final ArmSub armsub = new ArmSub();
@@ -66,6 +65,8 @@ public class RobotContainer {
   
 
   public RobotContainer() {
+
+    
 
     // Configure the trigger bindings
     swerveSub.setDefaultCommand(
@@ -111,6 +112,7 @@ public class RobotContainer {
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
 
+/**  Configure the trigger bindings for certain commands*/
   private void configureBindings() {
     // new JoystickButton(driverJoyStick, OIConstants.kMoveArmIdx ).whileTrue(new
     // MoveArmCMD(armsub));
@@ -220,7 +222,7 @@ public class RobotContainer {
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     
   }
-
+  //** gets the autonmous Command for the robot */
   public Command getAutonomousCommand() {
 
     return autoChooser.getSelected();

@@ -14,6 +14,7 @@ public class ResetHeadingCMD  extends Command  {
     }
     @Override
     public void execute() {
+        //Reset the the gyro of the robot.
         swerveSub.zeroHeading();
     }
 
