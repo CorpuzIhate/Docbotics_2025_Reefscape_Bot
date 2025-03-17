@@ -227,14 +227,14 @@ public class SwerveSub extends SubsystemBase {
      */
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, DriveConstants.kPhysicalMaxSpeedMetersPerSecond);
-        // proportaionally decreases the change the speeds so driver always had control
+        // proportionally decreases the change the speeds so driver always had control
         // of robot
         frontRight.setDesiredState(desiredStates[0]);
         frontLeft.setDesiredState(desiredStates[1]);
         backRight.setDesiredState(desiredStates[2]);
         backLeft.setDesiredState(desiredStates[3]);
 
-        // Outputs telemetry to Adavantage Log.
+        // Outputs telemetry to Advantage Log.
 
         // Logs desired states is an array that orders the desired states in the order
         // Advantage Log wants ( FL,FR, BL, BR ).
@@ -266,14 +266,14 @@ public class SwerveSub extends SubsystemBase {
 
     /**
      * Converts the the gyros heading output between 0 and 360 degrees
-     * because gryo is naturally continous.
+     * because gyro is naturally continuous.
      */
     public double getHeading() {
         return Math.IEEEremainder(-gyro.getAngle(), 360);
     }
 
     /**
-     * Converts into gryos heading in radians so the value
+     * Converts into gyros heading in radians so the value
      * can be converted into Rotation2d .
      * 
      * @return the gyro heading in rotation 2d (rad)
