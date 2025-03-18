@@ -81,7 +81,7 @@ public class AlignToBranchCMD extends Command {
         double targetYOffset = Constants.AutoConstants.kBranchTargetYOffset; // common Y offset
         double targetRotationOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetRotationOffset : Constants.AutoConstants.kRightBranchTargetRotationOffset;
 
-        /*FOR NOW, NOW OFFSETS */
+        /*FOR NOW, NO OFFSETS */
         double distanceFromRobotToTarget_meters = 
         (Constants.LimelightConstants.targetHeight_Inches - Constants.LimelightConstants.limelightHeight_meters) /
          Math.tan(Constants.LimelightConstants.kLimeLightAngle + LimelightHelpers.getTY(getName()));
@@ -96,7 +96,7 @@ public class AlignToBranchCMD extends Command {
         double desiredX = targetXOffset; // Replace with actual calculations based on limelight and desired position.
         double desiredY = targetYOffset; // Replace with actual calculations based on limelight and desired position.
         double desiredRotation = targetRotationOffset; // Replace with actual calculations based on limelight and desired rotation.
-
+        //FOR NOW, all set points are 0 meters from target
         // Calculate PID outputs.
         double xOutput = m_xController.calculate(targetXRelativeField, 0); // replace 0 with current robot x.
         double yOutput = m_yController.calculate(targetYRelativeField, 0); // replace 0 with current robot y.
