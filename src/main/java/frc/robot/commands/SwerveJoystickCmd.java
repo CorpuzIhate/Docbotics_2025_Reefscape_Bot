@@ -29,9 +29,9 @@ public class SwerveJoystickCmd extends Command {
       public final Supplier<Boolean> fieldOrientedFunction;
       private final Supplier<Boolean> slowModeFunction;
       public final Supplier<Boolean> targetOrientedFunction;
-      private final SlewRateLimiter xLimiter, yLimiter, turningLimiter; // Slew rate limiter cap the the amount of change of a value.
+      private final SlewRateLimiter xLimiter, yLimiter, turningLimiter; // slew rate limiter cap the the amount of change of a value
 
-      
+      private boolean isSlowMode;
       public static double CurrentXSpeed;
       public static double CurrentYSpeed;
       public static double CurrentTurningSpeed;
@@ -70,25 +70,36 @@ public class SwerveJoystickCmd extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Gets latest values from joystick.
-    swerveSubsystem.orientToTarget();
+    // gett latest values from joystick
+    //swerveSubsystem.orientToTarget();
     double xspeed = xSpdFunction.get();
     double yspeed = ySpdFunction.get();
     double turningSpeed = turningSpdFunction.get();
     
-    //Now apply deband,  if joystick doesnt center back to exactly zero, it still stops.
+    //now apply deband,  if joystick doesnt center back to exactly zero, it still stops
     xspeed = Math.abs(xspeed) > OIConstants.kDeadband ? xspeed : 0.0;
     yspeed = Math.abs(yspeed) > OIConstants.kDeadband ? yspeed : 0.0;
     turningSpeed = Math.abs(turningSpeed) > OIConstants.kDeadband ? turningSpeed : 0.0;
 
-    // Allows for violent joystick movements to be more smooth.
+    // allows for violent joystick movements to be more smooth
 
     xspeed = xLimiter.calculate(xspeed) *  DriveConstants.kTeleDriveMaxSpeedMetersPerSecond;
     yspeed = yLimiter.calculate(yspeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond; 
     turningSpeed = turningLimiter.calculate(turningSpeed) *
      DriveConstants.kTeleDriveMaxAngularSpeedRadiansPerSecond;
 
-    //Select orintatin of robot.
+    //If slow mode toggle is on apply it to the modules.
+    if(slowModeFunction.get()){
+        isSlowMode = !isSlowMode;
+    }
+    if(isSlowMode){
+      xspeed *= 0.35;
+      yspeed *= 0.35;
+      turningSpeed *= 0.35;
+    }
+    
+
+    //select orintatin of robot
 
     ;
     ChassisSpeeds chassisSpeeds;
@@ -96,10 +107,7 @@ public class SwerveJoystickCmd extends Command {
         chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
           xspeed, -yspeed, -turningSpeed, swerveSubsystem.getRotation2d());
 
-       else{ // Robot oriented.
-      chassisSpeeds = new ChassisSpeeds(xspeed,-yspeed, -turningSpeed); //hard coded -s
-       }
-       
+
     SmartDashboard.putBoolean("targetOn", targetOrientedFunction.get());
     
     CurrentXSpeed = xspeed;
@@ -109,9 +117,9 @@ public class SwerveJoystickCmd extends Command {
 
 
 
-    // Convert chassis speeds to individual module states; later to switch to velocity.
+    // convert chassis speeds to individual module states; later to switch to velocity
     SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
-    // Set state to each wheel.
+    // set state to each wheel
 
 
     swerveSubsystem.setModuleStates(moduleStates);

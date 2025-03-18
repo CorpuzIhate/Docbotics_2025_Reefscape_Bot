@@ -133,6 +133,8 @@ public final class Constants {
     }
     
     public static final class OIConstants {
+
+
         public static final int kDriverControllerPort = 0;
         /* ID of the joystick axis's. Used in SwerveJoystick Command
           to determine which direction an input in certain joystick axis's 
@@ -140,6 +142,9 @@ public final class Constants {
         public static final int kDriverXAxis = 0;
         public static final int kDriverYAxis = 1;
         public static final int kDriverRotAxis = 4;
+
+        public static int kIntakeAxis =3;
+        public static int kOutakeAxis = 2;
   
         /** Configure robot into field oriented mode button. */
         public static final int kDriverFieldOrientedButtonIdx = 1;
@@ -149,7 +154,9 @@ public final class Constants {
         public static final int kDriveGyroResetButtonIdx = 2;
       
         /** Move Arm Button. A button. */
-        public static final int kMoveArmIdx  = 1; 
+        public static final int kMoveArmIdx  = 1;
+        /**Button if the robot will be in slow mode. */
+        public static final int kSlowModeIdx = 4; 
 
 
         /** deadband of the joystick when driving in tele-op.

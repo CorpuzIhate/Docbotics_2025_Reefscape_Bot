@@ -50,7 +50,7 @@ public class RobotContainer {
 
 
   // configures the different subsystem of the robot
-  private final SwerveSub swerveSub =  new SwerveSub();
+  public final SwerveSub swerveSub =  new SwerveSub();
   public final CoralPitcherIntakeSub coralPitcherIntakeSub = new CoralPitcherIntakeSub();
   private final CoralIntakeConsumerSub coralIntakeConsumerSub = new CoralIntakeConsumerSub();
   // private final ArmSub armsub = new ArmSub();
@@ -68,9 +68,29 @@ public class RobotContainer {
 
     
 
+
+    Command swerveTest = new SwerveJoystickCmd(swerveSub, 
+    () -> -driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
+    () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
+    () -> driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis),
+    () -> driverJoyStick.getRawButtonPressed(OIConstants.kSlowModeIdx),
+    null,
+    null);
     // Configure the trigger bindings
     swerveSub.setDefaultCommand(
-        new SwerveJoystickCmd(
+      new SwerveJoystickCmd(
+        swerveSub,
+        () -> -driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
+        () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
+        () -> driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis),
+        () -> driverJoyStick.getRawButtonPressed(OIConstants.kSlowModeIdx),
+         /// By default will be on field oriented.
+        () -> !
+        driverJoyStick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx),
+        () -> driverJoyStick.getRawButton(OIConstants.kOrientToTargetIdx)));
+
+
+        /* 
             swerveSub,
             () -> -driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
             () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
@@ -80,6 +100,7 @@ public class RobotContainer {
             () -> !
             driverJoyStick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx), 
             () -> driverJoyStick.getRawButton(OIConstants.kOrientToTargetIdx))); 
+             */
     limelightSub.setDefaultCommand(
         new ManageLimeLightCMD(limelightSub));
 
