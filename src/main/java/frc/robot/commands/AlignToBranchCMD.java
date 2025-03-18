@@ -53,10 +53,13 @@ public class AlignToBranchCMD extends Command {
         m_rotationController.reset();
         m_limelightTable.getEntry("ledMode").setNumber(3); // turn on limelight leds
         m_limelightTable.getEntry("camMode").setNumber(0); // set limelight to vision mode
+        SmartDashboard.putBoolean("running?",true);
     }
 
     @Override
     public void execute() {
+        SmartDashboard.putBoolean("running?",true);
+
         if( LimelightHelpers.getTV(getName()))
         {
             // No target found, stop.
@@ -111,6 +114,8 @@ public class AlignToBranchCMD extends Command {
 
     @Override
     public void end(boolean interrupted) {
+        SmartDashboard.putBoolean("running?",false);
+
         m_swerveSub.stopModules();
         m_limelightTable.getEntry("ledMode").setNumber(1); // turn off limelight leds
         m_limelightTable.getEntry("camMode").setNumber(1); // set limelight to driver mode
