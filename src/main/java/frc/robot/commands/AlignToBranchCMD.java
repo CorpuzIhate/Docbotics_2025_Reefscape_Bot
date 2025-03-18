@@ -14,6 +14,7 @@ import frc.robot.subsystems.SwerveSub;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class AlignToBranchCMD extends Command {
@@ -56,8 +57,8 @@ public class AlignToBranchCMD extends Command {
 
     @Override
     public void execute() {
-        double tv = m_tv.getDouble(0.0);
-        if (tv < 1.0) {
+        if( LimelightHelpers.getTV(getName()))
+        {
             // No target found, stop.
             m_swerveSub.stopModules();
             return;
@@ -81,9 +82,12 @@ public class AlignToBranchCMD extends Command {
         double distanceFromRobotToTarget_meters = 
         (Constants.LimelightConstants.targetHeight_Inches - Constants.LimelightConstants.limelightHeight_meters) /
          Math.tan(Constants.LimelightConstants.kLimeLightAngle + LimelightHelpers.getTY(getName()));
-
+         SmartDashboard.putNumber("distanceFromRobotToTarget_meters",distanceFromRobotToTarget_meters);
         double targetXRelativeField = distanceFromRobotToTarget_meters * Math.sin(tx);
-        double targetYRelativeField = distanceFromRobotToTarget_meters * Math.cos(ty);
+        double targetYRelativeField = distanceFromRobotToTarget_meters * Math.cos(tx);
+
+        SmartDashboard.putNumber("targetXRelativeField",targetXRelativeField);
+        SmartDashboard.putNumber("targetYRelativeField",targetYRelativeField);
 
         // Calculate desired robot position based on limelight data and target offsets.
         double desiredX = targetXOffset; // Replace with actual calculations based on limelight and desired position.
@@ -91,8 +95,8 @@ public class AlignToBranchCMD extends Command {
         double desiredRotation = targetRotationOffset; // Replace with actual calculations based on limelight and desired rotation.
 
         // Calculate PID outputs.
-        double xOutput = m_xController.calculate(targetXRelativeField, desiredX); // replace 0 with current robot x.
-        double yOutput = m_yController.calculate(targetYRelativeField, desiredY); // replace 0 with current robot y.
+        double xOutput = m_xController.calculate(targetXRelativeField, 0); // replace 0 with current robot x.
+        double yOutput = m_yController.calculate(targetYRelativeField, 0); // replace 0 with current robot y.
         double rotationOutput = m_rotationController.calculate(tx, 0); // using tx to correct rotation.
 
         // Create chassis speeds and drive.

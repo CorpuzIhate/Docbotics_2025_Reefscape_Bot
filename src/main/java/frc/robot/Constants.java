@@ -302,9 +302,9 @@ public final class Constants {
     public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
 
 
-    public static final double kPXController = 0.1;
-    public static final double kPYController = 0.1;
-    public static final double kPThetaController = 0.1;
+    public static final double kPXController = 0.4;
+    public static final double kPYController = 0.4;
+    public static final double kPThetaController = 0.4;
 
     public static double kIXController = 0;
     public static double kIYController = 0;
@@ -333,9 +333,9 @@ public final class Constants {
 
   public static final class LimelightConstants{
 
-    public static double kLimeLightAngle;
-    public static int limelightHeight_meters;
-    public static int targetHeight_Inches;
+    public static double kLimeLightAngle = 0;
+    public static int limelightHeight_meters = 0;
+    public static int targetHeight_Inches = 0;
 
   }
 
