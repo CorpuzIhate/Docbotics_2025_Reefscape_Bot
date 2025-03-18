@@ -150,20 +150,20 @@ public class RobotContainer {
 
     Command consumerCoralAtCoralStation = new ParallelCommandGroup(
       new InstantCommand(() -> 
-      {elevatorSub.setIntakeHeightSetPoint_Inches(30.8); 
-      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(144);}));
+      {elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.coralStationSetpoint_inches); 
+      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.coralStation_degrees);}));
       NamedCommands.registerCommand("consumeCoralAtCoralStation", consumerCoralAtCoralStation); 
 
     Command scoreL2Reef = new ParallelCommandGroup(
       new InstantCommand(() -> 
-      {elevatorSub.setIntakeHeightSetPoint_Inches(43);
-      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(91);}));
+      {elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.reefLevel2Setpoint_inches);
+      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.L2Pitch_degrees);}));
       NamedCommands.registerCommand("scoreL2Reef", scoreL2Reef);
 
     Command scoreL3Reef = new ParallelCommandGroup(
         new InstantCommand(() -> 
-        {elevatorSub.setIntakeHeightSetPoint_Inches(84);
-        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(118);})); 
+        {elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.reefLevel3Setpoint_inches);
+        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.L3Pitch_degrees);})); 
         NamedCommands.registerCommand("scoreL3Reef", scoreL3Reef);
 
     Command setIntakePositionToDefault = new ParallelCommandGroup(
