@@ -300,9 +300,23 @@ public final class Constants {
         DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 10;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
     public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
-    public static final double kPXController = 1.5;
-    public static final double kPYController = 1.5;
-    public static final double kPThetaController = 3;
+
+
+    public static final double kPXController = 0.1;
+    public static final double kPYController = 0.1;
+    public static final double kPThetaController = 0.1;
+
+    public static double kIXController = 0;
+    public static double kIYController = 0;
+    public static double kIThetaController = 0;
+    public static double kDXController = 0;
+    public static double kDYController = 0;
+    public static double kDThetaController = 0;
+    public static double kLeftBranchTargetXOffset = 0;
+    public static double kBranchTargetYOffset = 0;
+    public static double kLeftBranchTargetRotationOffset = 0;
+    public static double kRightBranchTargetXOffset = 0;
+    public static double kRightBranchTargetRotationOffset = 0;
 
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
         new TrapezoidProfile.Constraints(
@@ -312,6 +326,16 @@ public final class Constants {
     public static final class autoCommands {
       public static final String moveArmCMD = "moveArmCMD";
     }
+
+
+
+  }
+
+  public static final class LimelightConstants{
+
+    public static double kLimeLightAngle;
+    public static int limelightHeight_meters;
+    public static int targetHeight_Inches;
 
   }
 

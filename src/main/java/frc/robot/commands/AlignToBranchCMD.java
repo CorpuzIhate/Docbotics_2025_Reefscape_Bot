@@ -1,0 +1,120 @@
+
+package frc.robot.commands;
+
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
+import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
+import frc.robot.config.LimelightHelpers;
+import frc.robot.subsystems.SwerveSub;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj2.command.Command;
+
+public class AlignToBranchCMD extends Command {
+    private final SwerveSub m_swerveSub;
+    private final boolean m_alignLeft; // true for left branch, false for right
+    private final PIDController m_xController;
+    private final PIDController m_yController;
+    private final PIDController m_rotationController;
+    private final NetworkTable m_limelightTable;
+    private final NetworkTableEntry m_tx;
+    private final NetworkTableEntry m_ty;
+    private final NetworkTableEntry m_tv;
+
+    public AlignToBranchCMD(SwerveSub swerveSub, boolean alignLeft) {
+        m_swerveSub = swerveSub;
+        m_alignLeft = alignLeft;
+
+        m_xController = new PIDController(Constants.AutoConstants.kPXController, Constants.AutoConstants.kIXController, Constants.AutoConstants.kDXController);
+        m_yController = new PIDController(Constants.AutoConstants.kPYController, Constants.AutoConstants.kIYController, Constants.AutoConstants.kDYController);
+        m_rotationController = new PIDController(Constants.AutoConstants.kPThetaController, Constants.AutoConstants.kIThetaController, Constants.AutoConstants.kDThetaController);
+
+        m_rotationController.enableContinuousInput(0, 360); // important for heading
+
+        m_limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+        m_tx = m_limelightTable.getEntry("tx");
+        m_ty = m_limelightTable.getEntry("ty");
+        m_tv = m_limelightTable.getEntry("tv");
+
+        addRequirements(swerveSub);
+    }
+
+    @Override
+    public void initialize() {
+        m_xController.reset();
+        m_yController.reset();
+        m_rotationController.reset();
+        m_limelightTable.getEntry("ledMode").setNumber(3); // turn on limelight leds
+        m_limelightTable.getEntry("camMode").setNumber(0); // set limelight to vision mode
+    }
+
+    @Override
+    public void execute() {
+        double tv = m_tv.getDouble(0.0);
+        if (tv < 1.0) {
+            // No target found, stop.
+            m_swerveSub.stopModules();
+            return;
+        }
+
+        double tx = LimelightHelpers.getTX(getName());
+        double ty = LimelightHelpers.getTX(getName());
+
+        /*
+         * x -> forward/ back from the robot
+         * y -> left / right from the robot
+         * 
+         */
+
+        // Adjust these target offsets based on your robot and field setup.
+        double targetXOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetXOffset : Constants.AutoConstants.kRightBranchTargetXOffset;
+        double targetYOffset = Constants.AutoConstants.kBranchTargetYOffset; // common Y offset
+        double targetRotationOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetRotationOffset : Constants.AutoConstants.kRightBranchTargetRotationOffset;
+
+        /*FOR NOW, NOW OFFSETS */
+        double distanceFromRobotToTarget_meters = 
+        (Constants.LimelightConstants.targetHeight_Inches - Constants.LimelightConstants.limelightHeight_meters) /
+         Math.tan(Constants.LimelightConstants.kLimeLightAngle + LimelightHelpers.getTY(getName()));
+
+        double targetXRelativeField = distanceFromRobotToTarget_meters * Math.sin(tx);
+        double targetYRelativeField = distanceFromRobotToTarget_meters * Math.cos(ty);
+
+        // Calculate desired robot position based on limelight data and target offsets.
+        double desiredX = targetXOffset; // Replace with actual calculations based on limelight and desired position.
+        double desiredY = targetYOffset; // Replace with actual calculations based on limelight and desired position.
+        double desiredRotation = targetRotationOffset; // Replace with actual calculations based on limelight and desired rotation.
+
+        // Calculate PID outputs.
+        double xOutput = m_xController.calculate(targetXRelativeField, desiredX); // replace 0 with current robot x.
+        double yOutput = m_yController.calculate(targetYRelativeField, desiredY); // replace 0 with current robot y.
+        double rotationOutput = m_rotationController.calculate(tx, 0); // using tx to correct rotation.
+
+        // Create chassis speeds and drive.
+        ChassisSpeeds chassisSpeeds = new ChassisSpeeds(xOutput, yOutput, rotationOutput);
+        /*convert chassis speeds into module states */
+        SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
+
+        
+        // field relative
+        m_swerveSub.setModuleStates(moduleStates);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_swerveSub.stopModules();
+        m_limelightTable.getEntry("ledMode").setNumber(1); // turn off limelight leds
+        m_limelightTable.getEntry("camMode").setNumber(1); // set limelight to driver mode
+    }
+
+    @Override
+    public boolean isFinished() {
+        // You might want to add a tolerance check here to stop when close enough to the target.
+        return false; // Run until interrupted by driver.
+    }
+}
