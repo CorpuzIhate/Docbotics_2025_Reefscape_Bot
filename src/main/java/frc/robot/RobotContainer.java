@@ -8,14 +8,11 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
-import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
 import frc.robot.commands.powerCoralIntakeCMD;
-import frc.robot.commands.powerDismountSpinMotorCMD;
 import frc.robot.commands.ManageLimeLightCMD;
 import frc.robot.commands.MoveDismountArmCMD;
-import frc.robot.commands.PitchIntakeCMD;
 import frc.robot.commands.ResetHeadingCMD;
 import frc.robot.commands.SwerveJoystickCmd;
 
@@ -25,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
@@ -35,8 +31,6 @@ import frc.robot.subsystems.DismountSub;
 import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
-
-import java.time.Instant;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -69,13 +63,6 @@ public class RobotContainer {
     
 
 
-    Command swerveTest = new SwerveJoystickCmd(swerveSub, 
-    () -> -driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
-    () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
-    () -> driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis),
-    () -> driverJoyStick.getRawButtonPressed(OIConstants.kSlowModeIdx),
-    null,
-    null);
     // Configure the trigger bindings
     swerveSub.setDefaultCommand(
       new SwerveJoystickCmd(
@@ -171,13 +158,6 @@ public class RobotContainer {
       {elevatorSub.setIntakeHeightSetPoint_Inches(0);
       coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(60);}));  
 
-      Command scoreL1Reef  = new ParallelCommandGroup(
-        new InstantCommand(() -> 
-        {elevatorSub.setIntakeHeightSetPoint_Inches(0);
-        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(100);}));  
-
-      NamedCommands.registerCommand("setIntakePositionToDefault", setIntakePositionToDefault);
-      NamedCommands.registerCommand("intake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, -0.3).withTimeout(3));
       
 
       NamedCommands.registerCommand("outtake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, 0.3).withTimeout(0.5));
@@ -225,7 +205,7 @@ public class RobotContainer {
     );
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
-    Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
+    //Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;}); MAYBEEEEEEEEEEEEEEEEEEEEEEE use...................
     Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
     /**dismount Algea when up on the d-pad is pressed. */
