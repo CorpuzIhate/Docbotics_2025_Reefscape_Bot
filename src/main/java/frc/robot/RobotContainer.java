@@ -135,11 +135,13 @@ public class RobotContainer {
 
     /** Command to get intake to height and angular coral station set-point. */
     Command consumerCoralAtCoralStation = new ParallelCommandGroup(
+
         new InstantCommand(() -> {
-          elevatorSub.setIntakeHeightSetPoint_Inches(30.8);
-          coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(144);
+          elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.coralStationSetpoint_inches);
+          coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.coralStation_degrees);
         }));
 
+    /* registers the command in PathPlanner. */
     NamedCommands.registerCommand("consumeCoralAtCoralStation", consumerCoralAtCoralStation);
 
     /* binds Command to trigger. */
@@ -147,24 +149,28 @@ public class RobotContainer {
 
     /** Command to get intake to height and angular level 2 reef set-point. */
     Command scoreL2Reef = new ParallelCommandGroup(
+
         new InstantCommand(() -> {
-          elevatorSub.setIntakeHeightSetPoint_Inches(43);
-          coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(91);
+          elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.reefLevel2Setpoint_inches);
+          coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.L2Pitch_degrees);
         }));
 
     /* registers the command in PathPlanner. */
     NamedCommands.registerCommand("scoreL2Reef", scoreL2Reef);
+
 
     /** binds Command to trigger. */
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).onTrue(scoreL2Reef);
 
     /** Command to get intake to height and angular level 3 reef set-point. */
     Command scoreL3Reef = new ParallelCommandGroup(
+
         new InstantCommand(() -> {
-          elevatorSub.setIntakeHeightSetPoint_Inches(84);
-          coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(118);
+          elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.reefLevel3Setpoint_inches));
+          coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.L3Pitch_degrees);
         }));
     /* registers the command in PathPlanner. */
+
 
     NamedCommands.registerCommand("scoreL3Reef", scoreL3Reef);
     /** binds Command to trigger. */
