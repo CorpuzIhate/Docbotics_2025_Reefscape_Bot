@@ -156,8 +156,11 @@ public class RobotContainer {
     NamedCommands.registerCommand("scoreL2Reef", scoreL2Reef);
 
     /** binds Command to trigger. */
-    new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).onTrue(scoreL2Reef);
-
+   // new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).onTrue(scoreL2Reef);
+//TEMPEROARY
+    new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).whileTrue(
+      new AlignToBranchCMD(swerveSub, false)
+    );
     /** Command to get intake to height and angular level 3 reef set-point. */
     Command scoreL3Reef = new ParallelCommandGroup(
         new InstantCommand(() -> {
@@ -194,8 +197,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("resetSwerveModuleSpeedsCMD", new resetSwerveModuleSpeedsCMD(swerveSub));
 
     /** When button pressed reset the gyro. */
-    new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
-        new ResetHeadingCMD(swerveSub));
+    // new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
+    //     new ResetHeadingCMD(swerveSub));
 
     /** Command that dismounts algae from reef level 2. */
     Command dismountAlgaeL2CMD = new SequentialCommandGroup(

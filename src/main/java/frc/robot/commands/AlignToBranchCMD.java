@@ -75,8 +75,8 @@ public class AlignToBranchCMD extends Command {
 
         /*FOR NOW, NO OFFSETS */
         double distanceFromRobotToTarget_meters = 
-        (Constants.LimelightConstants.targetHeight_Inches - Constants.LimelightConstants.limelightHeight_meters) /
-         Math.tan(Constants.LimelightConstants.kLimeLightAngle + LimelightHelpers.getTY(getName()));
+        (Constants.LimelightConstants.reefTargetHeight_Inches - Constants.LimelightConstants.limelightHeight_inches) /
+         Math.tan(Constants.LimelightConstants.kLimeLightAngleFromGround_degrees + LimelightHelpers.getTY(getName()));
          SmartDashboard.putNumber("distanceFromRobotToTarget_meters",distanceFromRobotToTarget_meters);
         double targetXRelativeField = distanceFromRobotToTarget_meters * Math.sin(tx);
         double targetYRelativeField = distanceFromRobotToTarget_meters * Math.cos(tx);
