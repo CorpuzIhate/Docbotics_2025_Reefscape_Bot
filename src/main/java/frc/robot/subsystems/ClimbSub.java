@@ -10,7 +10,6 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import edu.wpi.first.math.controller.PIDController;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ArmConstants;
 import frc.robot.Constants.ClimbConstants;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -30,9 +29,9 @@ public class ClimbSub extends SubsystemBase{
 
     /**Climb motor controller. */    
     private PIDController climbController= new PIDController(
-        ArmConstants.kP,
-        ArmConstants.kI,
-        ArmConstants.kD);
+        ClimbConstants.kP,
+        ClimbConstants.kI,
+        ClimbConstants.kD);
 
     public ClimbSub(){
         /*right climb motor will mirror the left climb motor's movement.  */

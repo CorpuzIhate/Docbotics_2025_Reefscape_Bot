@@ -59,7 +59,6 @@ public class RobotContainer {
   public final SwerveSub swerveSub =  new SwerveSub();
   public final CoralPitcherIntakeSub coralPitcherIntakeSub = new CoralPitcherIntakeSub();
   private final CoralIntakeConsumerSub coralIntakeConsumerSub = new CoralIntakeConsumerSub();
-  // private final ArmSub armsub = new ArmSub();
   private final LimelightSub limelightSub = new LimelightSub();
   public final ElevatorSub elevatorSub = new ElevatorSub();
   private final DismountSub dismountSub = new DismountSub();
@@ -97,17 +96,7 @@ public class RobotContainer {
         () -> driverJoyStick.getRawButton(OIConstants.kOrientToTargetIdx)));
 
 
-        /* 
-            swerveSub,
-            () -> -driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
-            () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
-            () -> driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis),
-            () -> driverJoyStick.getRawButtonPressed(OIConstants.kSlowModeIdx),
-             /// By default will be on field oriented.
-            () -> !
-            driverJoyStick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx), 
-            () -> driverJoyStick.getRawButton(OIConstants.kOrientToTargetIdx))); 
-             */
+       
     limelightSub.setDefaultCommand(
         new ManageLimeLightCMD(limelightSub));
 
@@ -144,8 +133,7 @@ public class RobotContainer {
 
 /**  Configure the trigger bindings for certain commands*/
   private void configureBindings() {
-    // new JoystickButton(driverJoyStick, OIConstants.kMoveArmIdx ).whileTrue(new
-    // MoveArmCMD(armsub));
+    
 
     
   

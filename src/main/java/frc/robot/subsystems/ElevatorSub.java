@@ -8,7 +8,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycle;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ArmConstants;
+
 import frc.robot.Constants.ElevatorConstants;
 
 import com.revrobotics.spark.SparkBase.PersistMode;

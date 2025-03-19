@@ -196,16 +196,6 @@ public final class Constants {
 
   }
 
-  // Constants for the arm.
-  public static final class ArmConstants {
-    // CAN ID of arm motor.
-    public static final int kArmMotorPort = 13;
-    // Arm PID controller constants.
-    public static final double kP = 0.00175;
-    public static final double kI = 0;
-    public static final double kD = 0.0000525;
-
-  }
 
   /** Constants for the elevator. (TEMPORARY, NEEDS TO ALL BE TUNED) */
   public static final class ElevatorConstants {
@@ -318,8 +308,10 @@ public final class Constants {
 
   public static final class ClimbConstants {
     /**Primary left climb motor port. */
+    //TODO: Change the motor port
     public static final int kPrimaryLeftClimbMotorPort = 13;
       /**right climb motor port. */
+      //TODO: Change the motor port
     public static final int kRightClimbMotorPort = 13;
 
  
