@@ -314,5 +314,19 @@ public final class Constants {
     }
 
   }
+  /**CLIMBER STILL NEED PROPER MOTOR CONTROLLER IDS */
+  public static final class ClimbConstants {
+    /**Primary left climb motor port. */
+    public static final int kPrimaryLeftClimbMotorPort = 13;
+      /**right climb motor port. */
+    public static final int kRightClimbMotorPort = 13;
+
+ 
+    /*PID constants for climb motor. */
+    public static final double kP = 0.00175;
+    public static final double kI = 0;
+    public static final double kD = 0.0000525;
+    
+  } 
 
 }
