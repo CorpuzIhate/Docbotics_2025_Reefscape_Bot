@@ -108,6 +108,7 @@ public final class Constants {
       public static final double kBackRight = 0.08715 * 2 * Math.PI;
     }
 
+
     /**
      * Max speed of the drive motors in meters per second. Used in both swerve
      * module class and
@@ -163,7 +164,7 @@ public final class Constants {
     /** Orient to Target button. B button. */
     public static final int kOrientToTargetIdx = 2;
     /** reset gyro buttton. */
-    public static final int kDriveGyroResetButtonIdx = 2;
+    public static final int kDriveGyroResetButtonIdx = 7;
 
     /** Move Arm Button. A button. */
     public static final int kMoveArmIdx = 1;

@@ -197,8 +197,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("resetSwerveModuleSpeedsCMD", new resetSwerveModuleSpeedsCMD(swerveSub));
 
     /** When button pressed reset the gyro. */
-    // new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
-    //     new ResetHeadingCMD(swerveSub));
+    new JoystickButton(driverJoyStick, OIConstants.kDriveGyroResetButtonIdx).whileTrue(
+        new ResetHeadingCMD(swerveSub));
 
     /** Command that dismounts algae from reef level 2. */
     Command dismountAlgaeL2CMD = new SequentialCommandGroup(
