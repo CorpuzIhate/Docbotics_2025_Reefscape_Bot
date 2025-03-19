@@ -88,14 +88,17 @@ public class AlignToBranchCMD extends Command {
         double desiredX = targetXOffset; // Replace with actual calculations based on limelight and desired position.
         double desiredY = targetYOffset; // Replace with actual calculations based on limelight and desired position.
         double desiredRotation = targetRotationOffset; // Replace with actual calculations based on limelight and desired rotation.
+        SmartDashboard.putData("limeLight_xController",m_xController);
+        SmartDashboard.putData("limelight_yController",m_yController);
 
+        SmartDashboard.putData("limelight_thetaController",m_rotationController);
         // Calculate PID outputs.
         double xOutput = m_xController.calculate(targetXRelativeField, 0); // replace 0 with current robot x.
         double yOutput = m_yController.calculate(targetYRelativeField, 0); // replace 0 with current robot y.
         double rotationOutput = m_rotationController.calculate(tx, 0); // using tx to correct rotation.
 
         // Create chassis speeds and drive.
-        ChassisSpeeds chassisSpeeds = new ChassisSpeeds(xOutput, yOutput, rotationOutput);
+        ChassisSpeeds chassisSpeeds = new ChassisSpeeds(xOutput, -yOutput, -rotationOutput);
         /*convert chassis speeds into module states */
         SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
 
