@@ -174,7 +174,7 @@ public class RobotContainer {
     
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel3Idx).
     onTrue(scoreL3Reef);
-
+    
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToCoralStationIdx).
     onTrue(consumerCoralAtCoralStation);
 
@@ -183,7 +183,7 @@ public class RobotContainer {
       new ResetHeadingCMD(swerveSub)
     );
 
-    /**Command that dismounts Algea from the reef. */
+    /**Command that dismounts Algea from the reef at level 2. */
     Command dismountAlgeaL2CMD = 
     new SequentialCommandGroup(
       new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
@@ -196,6 +196,7 @@ public class RobotContainer {
           dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
     );
+    //*Command that dismounts the Algea from the reef at level 3 */
     Command dismountAlgeaL3CMD = 
     new SequentialCommandGroup(
       new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
@@ -209,13 +210,13 @@ public class RobotContainer {
         ()-> { return dismountSub.getIsHoldPosition();})
     );
 
-    //Creates the Climber Motors to move out for hanging
+    //Moves claw out for hanging
     Command Climb =
     new ParallelCommandGroup(
           new ClimbCMD(climbsub, ClimbConstants.kCLIMBhookon)
     );
 
-    //Pulls the robot up when climber is in position
+    //Drops the Robot from climbing postition
     Command UnClimb =
     new ParallelCommandGroup(
           new ClimbCMD(climbsub, ClimbConstants.kCLIMBLetGo)
