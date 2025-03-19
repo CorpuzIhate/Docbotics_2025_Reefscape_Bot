@@ -232,13 +232,13 @@ public class RobotContainer {
 
     /**dismount Algea when up on the d-pad is pressed. */
 
-
+    //When Dpad Right is pressed start command "dismountAlgeaL3CMD"
     isDpadRightPressed.onTrue(dismountAlgeaL3CMD);
-
+    //when Dpad Left is pressed start command "dismountAlgeaL2CMD"
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
-
+    //when Dpad Down is pressed start command "Climb"
     isDpadDownPressed.onTrue(Climb);
-
+    //when Dpad Up is pressed start command "UnClimb"
     isDpadUpPressed.onTrue(UnClimb);
 
 
