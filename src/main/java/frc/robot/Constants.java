@@ -156,7 +156,7 @@ public final class Constants {
     public static final int kDriverRotAxis = 4;
 
     public static int kIntakeAxis = 3;
-    public static int kOutakeAxis = 2;
+    public static int kOuttakeAxis = 2;
 
     /** Configure robot into field oriented mode button. */
     public static final int kDriverFieldOrientedButtonIdx = 1;
@@ -287,9 +287,9 @@ public final class Constants {
       public static final double dismount_kD = 0.0000525;
       public static final double maxDismountPower = 0.5;
 
-      public static final double dismountAlegeSetpointL2_degrees = 37;
+      public static final double dismountAlgaeSetPointL2_degrees = 37;
 
-      public static final double dismountAlegeSetpointL3_degrees = 75;
+      public static final double dismountAlgaeSetPointL3_degrees = 75;
     }
 
   }
