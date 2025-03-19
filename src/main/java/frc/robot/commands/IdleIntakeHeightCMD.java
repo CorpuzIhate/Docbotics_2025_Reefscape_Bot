@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ElevatorSub;
 
 public class IdleIntakeHeightCMD extends Command {
+    /**Add subsystem,motors and PIDController */
     public final ElevatorSub elevatorSub;
     public final SparkMax primaryLeftElevatorMotor;
     public final SparkMax rightElevatorMotor;
@@ -19,6 +20,7 @@ public class IdleIntakeHeightCMD extends Command {
      * @param elevatorSub elevator subsystem.
      */
     public IdleIntakeHeightCMD(
+        /**Constructor for subsystem, motors, PIDController */
             ElevatorSub elevatorSub) {
         this.elevatorSub = elevatorSub;
         this.primaryLeftElevatorMotor = elevatorSub.getPrimaryLeftElevatorMotor();
@@ -38,31 +40,37 @@ public class IdleIntakeHeightCMD extends Command {
          */
         primaryLeftElevatorMotor.set(0);
         primaryLeftElevatorMotor.stopMotor();
-
+        /**Set command to running on the dashboard */
         SmartDashboard.putBoolean("IdleIntakeHeightCMD", true);
 
     }
 
     @Override
     public void execute() {
-        /* Send elevator telemetry */
+        //Telemetery
+        /**PID Values to the dashboard */
         SmartDashboard.putData("elevatorController", elevatorController);
+        /**Intake Position to the dashboard */
         SmartDashboard.putNumber("intakeHeightSetPoint", elevatorSub.getIntakeHeightSetPoint_Inches());
+        /**Error Position to the dashboard */
         SmartDashboard.putNumber("elevatorPositionError_Inches", elevatorController.getError());
+        /**Elevator Position to the dashboard */
         SmartDashboard.putNumber("elevatorPosition_Inches", elevatorSub.getPrimaryElevatorPosition());
         // Drive elevator Motor to set-point based on elevator controller.
-        //AFTER TESTING CHANGE SETPOINT TO THE VARIABLE SETPOINT IN ELEVATORSUB. 
+        //TODO AFTER TESTING CHANGE SETPOINT TO THE VARIABLE SETPOINT IN ELEVATORSUB. 
         double output = elevatorController.calculate(elevatorSub.getPrimaryElevatorPosition(), elevatorSub.getIntakeHeightSetPoint_Inches());
         primaryLeftElevatorMotor.set(output);
     }
 
-    /**
-     * When elevator command ends
-     * stop all motors;
-     */
+    
     @Override
     public void end(boolean interrupted) {
+        /**Set command to NOT running on the dashboard */
         SmartDashboard.putBoolean("IdleIntakeHeightCMD", false);
+            /**
+         * When elevator command ends
+         * stop all motors;
+         */
         primaryLeftElevatorMotor.set(0);
         primaryLeftElevatorMotor.stopMotor();
     }
