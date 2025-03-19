@@ -268,8 +268,6 @@ public class RobotContainer {
     isDpadUpPressed.onTrue(ClimberIN);
 
 
-    SmartDashboard.putData(ClimberIN);
-    SmartDashboard.putData(ClimberIN);
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
 
