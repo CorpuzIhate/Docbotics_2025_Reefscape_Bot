@@ -27,10 +27,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+
 import frc.robot.subsystems.ClimbSub;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
 import frc.robot.subsystems.CoralPitcherIntakeSub;
@@ -38,13 +37,12 @@ import frc.robot.subsystems.DismountSpinSub;
 import frc.robot.subsystems.DismountSub;
 import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
-import frc.robot.subsystems.LimelightSub;
 
+import frc.robot.subsystems.LimelightSub;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -64,13 +62,12 @@ public class RobotContainer {
 
 
   private final SendableChooser<Command> autoChooser;
+
+  //*Creates a new joystick */
   private final Joystick driverJoyStick = new Joystick(OIConstants.kDriverControllerPort);
   
 
   public RobotContainer() {
-
-    
-
 
     // Configure the trigger bindings
     swerveSub.setDefaultCommand(
@@ -168,13 +165,13 @@ public class RobotContainer {
       NamedCommands.registerCommand("resetSwerveModuleSpeedsCMD", new resetSwerveModuleSpeedsCMD(swerveSub));
       new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToDefaultPosIdx).
     onTrue(setIntakePositionToDefault);
-    /**When button pressed moved Intake to reef level 2 height and angle. */  
+    /**When button is pressed moved Intake to reef level 2 height and angle. */  
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).
     onTrue(scoreL2Reef);
-    
+    //*When button is pressed move the intake to level 3 and activate the command scoreL3Reef*/
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel3Idx).
     onTrue(scoreL3Reef);
-    
+    //*When button is pressed move the intake to the coral station and activate consumer coral at coral station */
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToCoralStationIdx).
     onTrue(consumerCoralAtCoralStation);
 
@@ -244,6 +241,7 @@ public class RobotContainer {
 
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
+
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
 
     SmartDashboard.putData("Center_1Coral_I2_Reef" ,new PathPlannerAuto("Center_1Coral_I2_Reef"));
