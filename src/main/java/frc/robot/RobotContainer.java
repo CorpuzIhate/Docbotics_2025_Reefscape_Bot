@@ -10,14 +10,14 @@ import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
 import frc.robot.commands.ClimbCMD;
-import frc.robot.commands.ElevateIntakeToSetpointCMD;
+
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
 import frc.robot.commands.powerCoralIntakeCMD;
-import frc.robot.commands.powerDismountSpinMotorCMD;
+
 import frc.robot.commands.ManageLimeLightCMD;
 import frc.robot.commands.MoveDismountArmCMD;
-import frc.robot.commands.PitchIntakeCMD;
+
 import frc.robot.commands.ResetHeadingCMD;
 import frc.robot.commands.SwerveJoystickCmd;
 
@@ -27,9 +27,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
+
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.ClimbSub;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
@@ -40,9 +40,6 @@ import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
 
-import java.time.Instant;
-
-import javax.naming.PartialResultException;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -75,13 +72,6 @@ public class RobotContainer {
     
 
 
-    Command swerveTest = new SwerveJoystickCmd(swerveSub, 
-    () -> -driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
-    () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
-    () -> driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis),
-    () -> driverJoyStick.getRawButtonPressed(OIConstants.kSlowModeIdx),
-    null,
-    null);
     // Configure the trigger bindings
     swerveSub.setDefaultCommand(
       new SwerveJoystickCmd(
@@ -169,11 +159,7 @@ public class RobotContainer {
       {elevatorSub.setIntakeHeightSetPoint_Inches(0);
       coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(60);}));  
 
-      Command scoreL1Reef  = new ParallelCommandGroup(
-        new InstantCommand(() -> 
-        {elevatorSub.setIntakeHeightSetPoint_Inches(0);
-        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(100);}));  
-
+      
       NamedCommands.registerCommand("setIntakePositionToDefault", setIntakePositionToDefault);
       NamedCommands.registerCommand("intake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, -0.3).withTimeout(3));
       
