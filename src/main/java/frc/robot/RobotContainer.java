@@ -263,7 +263,7 @@ public class RobotContainer {
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
-    isDpadDownPressed.toggleOnTrue(ClimberOUT);
+    isDpadDownPressed.onTrue(ClimberOUT);
 
     isDpadUpPressed.onTrue(ClimberIN);
 

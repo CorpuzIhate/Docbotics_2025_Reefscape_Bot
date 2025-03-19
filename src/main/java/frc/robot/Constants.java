@@ -328,7 +328,7 @@ public final class Constants {
     public static final double kI = 0;
     public static final double kD = 0.0000525;
 
-    public static final double kCLIMBhookon = 90; //*will change probably */
+    public static final double kCLIMBhookon = 90; //*will change */
 
     public static final double kCLIMBLetGo = 0;
     
