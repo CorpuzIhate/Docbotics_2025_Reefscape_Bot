@@ -210,13 +210,13 @@ public class RobotContainer {
     );
 
     //Creates the Climber Motors to move out for hanging
-    Command ClimberOUT =
+    Command Climb =
     new ParallelCommandGroup(
           new ClimbCMD(climbsub, ClimbConstants.kCLIMBhookon)
     );
 
     //Pulls the robot up when climber is in position
-    Command ClimberIN =
+    Command UnClimb =
     new ParallelCommandGroup(
           new ClimbCMD(climbsub, ClimbConstants.kCLIMBLetGo)
     );
@@ -237,9 +237,9 @@ public class RobotContainer {
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
-    isDpadDownPressed.onTrue(ClimberOUT);
+    isDpadDownPressed.onTrue(Climb);
 
-    isDpadUpPressed.onTrue(ClimberIN);
+    isDpadUpPressed.onTrue(UnClimb);
 
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
