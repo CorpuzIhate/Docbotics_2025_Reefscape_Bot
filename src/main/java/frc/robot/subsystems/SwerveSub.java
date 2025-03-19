@@ -37,7 +37,7 @@ public class SwerveSub extends SubsystemBase {
             DriveConstants.kIsFrontRightDriveEncoderReversed,
             DriveConstants.kIsFrontRightTurningEncoderReversed,
             DriveConstants.kFrontRightDriveAbsoluteEncoderPort,
-            DriveConstants.DriveAbsoluteEncoderOffsetRad.kBackRight,
+            DriveConstants.DriveAbsoluteEncoderOffsetRad.kFrontRight,
             DriveConstants.kFrontRightDriveAbsoluteEncoderReversed);
 
     public final SwerveModule frontLeft = new SwerveModule(

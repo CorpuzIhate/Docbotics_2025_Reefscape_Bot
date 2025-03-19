@@ -108,6 +108,7 @@ public final class Constants {
       public static final double kBackRight = 0.08715 * 2 * Math.PI;
     }
 
+
     /**
      * Max speed of the drive motors in meters per second. Used in both swerve
      * module class and
@@ -156,14 +157,14 @@ public final class Constants {
     public static final int kDriverRotAxis = 4;
 
     public static int kIntakeAxis = 3;
-    public static int kOutakeAxis = 2;
+    public static int kOuttakeAxis = 2;
 
     /** Configure robot into field oriented mode button. */
     public static final int kDriverFieldOrientedButtonIdx = 1;
     /** Orient to Target button. B button. */
     public static final int kOrientToTargetIdx = 2;
     /** reset gyro buttton. */
-    public static final int kDriveGyroResetButtonIdx = 2;
+    public static final int kDriveGyroResetButtonIdx = 7;
 
     /** Move Arm Button. A button. */
     public static final int kMoveArmIdx = 1;
@@ -287,9 +288,9 @@ public final class Constants {
       public static final double dismount_kD = 0.0000525;
       public static final double maxDismountPower = 0.5;
 
-      public static final double dismountAlegeSetpointL2_degrees = 37;
+      public static final double dismountAlgaeSetPointL2_degrees = 37;
 
-      public static final double dismountAlegeSetpointL3_degrees = 75;
+      public static final double dismountAlgaeSetPointL3_degrees = 75;
     }
 
   }
@@ -302,9 +303,9 @@ public final class Constants {
     public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
 
 
-    public static final double kPXController = 0.4;
-    public static final double kPYController = 0.4;
-    public static final double kPThetaController = 0.4;
+    public static final double kPXController = 0.01;
+    public static final double kPYController = 0.01;
+    public static final double kPThetaController = 0.01;
 
     public static double kIXController = 0;
     public static double kIYController = 0;
@@ -332,10 +333,12 @@ public final class Constants {
   }
 
   public static final class LimelightConstants{
-
-    public static double kLimeLightAngle = 0;
-    public static int limelightHeight_meters = 0;
-    public static int targetHeight_Inches = 0;
+    /**angle of limelight from the ground in degrees. */
+    public static double kLimeLightAngleFromGround_degrees = 15;
+    /**height of limelight from ground in inches. */
+    public static double limelightHeight_inches = 12.625;
+    /*height of the target from ground in inches. */
+    public static double reefTargetHeight_Inches = 11.125;
 
   }
 
