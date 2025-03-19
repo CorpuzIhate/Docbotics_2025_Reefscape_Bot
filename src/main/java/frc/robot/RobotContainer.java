@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
+import frc.robot.commands.ClimbCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
@@ -28,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.ClimbSub;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
 import frc.robot.subsystems.CoralPitcherIntakeSub;
 import frc.robot.subsystems.DismountSpinSub;
@@ -58,6 +60,7 @@ public class RobotContainer {
   public final ElevatorSub elevatorSub = new ElevatorSub();
   private final DismountSub dismountSub = new DismountSub();
   private final DismountSpinSub dismountSpinSub = new DismountSpinSub();
+  private final ClimbSub climbsub = new ClimbSub();
 
 
   private final SendableChooser<Command> autoChooser;
@@ -128,17 +131,19 @@ public class RobotContainer {
         () -> driverJoyStick.getRawAxis(OIConstants.kOutakeAxis) ));
 
     configureBindings();
+ 
 
       autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
+
 
 /**  Configure the trigger bindings for certain commands*/
   private void configureBindings() {
     // new JoystickButton(driverJoyStick, OIConstants.kMoveArmIdx ).whileTrue(new
     // MoveArmCMD(armsub));
 
-
+    
   
 
     /**Command to reset intake elevator motors */
@@ -148,22 +153,23 @@ public class RobotContainer {
     SmartDashboard.putData("resetEncodersCommand", resetEncodersCommand);
 
 
+
     Command consumerCoralAtCoralStation = new ParallelCommandGroup(
       new InstantCommand(() -> 
-      {elevatorSub.setIntakeHeightSetPoint_Inches(30.8); 
-      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(144);}));
+      {elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.coralStationSetpoint_inches); 
+      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.coralStation_degrees);}));
       NamedCommands.registerCommand("consumeCoralAtCoralStation", consumerCoralAtCoralStation); 
 
     Command scoreL2Reef = new ParallelCommandGroup(
       new InstantCommand(() -> 
-      {elevatorSub.setIntakeHeightSetPoint_Inches(43);
-      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(91);}));
+      {elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.reefLevel2Setpoint_inches);
+      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.L2Pitch_degrees);}));
       NamedCommands.registerCommand("scoreL2Reef", scoreL2Reef);
 
     Command scoreL3Reef = new ParallelCommandGroup(
         new InstantCommand(() -> 
-        {elevatorSub.setIntakeHeightSetPoint_Inches(84);
-        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(118);})); 
+        {elevatorSub.setIntakeHeightSetPoint_Inches(Constants.ElevatorConstants.elevatorSetpoint.reefLevel3Setpoint_inches);
+        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(Constants.IntakeConstants.IntakePitchSetPoints_degrees.L3Pitch_degrees);})); 
         NamedCommands.registerCommand("scoreL3Reef", scoreL3Reef);
 
     Command setIntakePositionToDefault = new ParallelCommandGroup(
@@ -190,6 +196,7 @@ public class RobotContainer {
     
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel3Idx).
     onTrue(scoreL3Reef);
+
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToCoralStationIdx).
     onTrue(consumerCoralAtCoralStation);
 
@@ -223,10 +230,12 @@ public class RobotContainer {
           dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
     );
+    
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
     Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
     Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
+    Trigger isDpadDownPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 180;});
 
     /**dismount Algea when up on the d-pad is pressed. */
 
@@ -234,6 +243,7 @@ public class RobotContainer {
     isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
+
 
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
