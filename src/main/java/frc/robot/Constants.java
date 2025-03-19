@@ -156,7 +156,7 @@ public final class Constants {
     public static final int kDriverRotAxis = 4;
 
     public static int kIntakeAxis = 3;
-    public static int kOutakeAxis = 2;
+    public static int kOuttakeAxis = 2;
 
     /** Configure robot into field oriented mode button. */
     public static final int kDriverFieldOrientedButtonIdx = 1;
@@ -287,9 +287,9 @@ public final class Constants {
       public static final double dismount_kD = 0.0000525;
       public static final double maxDismountPower = 0.5;
 
-      public static final double dismountAlegeSetpointL2_degrees = 37;
+      public static final double dismountAlgaeSetPointL2_degrees = 37;
 
-      public static final double dismountAlegeSetpointL3_degrees = 75;
+      public static final double dismountAlgaeSetPointL3_degrees = 75;
     }
 
   }
@@ -300,9 +300,23 @@ public final class Constants {
         DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 10;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
     public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
-    public static final double kPXController = 1.5;
-    public static final double kPYController = 1.5;
-    public static final double kPThetaController = 3;
+
+
+    public static final double kPXController = 0.4;
+    public static final double kPYController = 0.4;
+    public static final double kPThetaController = 0.4;
+
+    public static double kIXController = 0;
+    public static double kIYController = 0;
+    public static double kIThetaController = 0;
+    public static double kDXController = 0;
+    public static double kDYController = 0;
+    public static double kDThetaController = 0;
+    public static double kLeftBranchTargetXOffset = 0;
+    public static double kBranchTargetYOffset = 0;
+    public static double kLeftBranchTargetRotationOffset = 0;
+    public static double kRightBranchTargetXOffset = 0;
+    public static double kRightBranchTargetRotationOffset = 0;
 
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
         new TrapezoidProfile.Constraints(
@@ -312,6 +326,16 @@ public final class Constants {
     public static final class autoCommands {
       public static final String moveArmCMD = "moveArmCMD";
     }
+
+
+
+  }
+
+  public static final class LimelightConstants{
+
+    public static double kLimeLightAngle = 0;
+    public static int limelightHeight_meters = 0;
+    public static int targetHeight_Inches = 0;
 
   }
 
