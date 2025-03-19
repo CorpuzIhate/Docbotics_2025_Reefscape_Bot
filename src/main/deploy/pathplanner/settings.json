@@ -2,8 +2,14 @@
   "robotWidth": 0.81,
   "robotLength": 1.04,
   "holonomicMode": false,
-  "pathFolders": [],
-  "autoFolders": [],
+  "pathFolders": [
+    "Center",
+    "CoralSation Paths"
+  ],
+  "autoFolders": [
+    "Coral Autos",
+    "Processor Autos"
+  ],
   "defaultMaxVel": 4.2,
   "defaultMaxAccel": 1.5,
   "defaultMaxAngVel": 540.0,

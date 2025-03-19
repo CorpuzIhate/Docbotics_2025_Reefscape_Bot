@@ -68,6 +68,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Processor Autos",
   "choreoAuto": false
 }

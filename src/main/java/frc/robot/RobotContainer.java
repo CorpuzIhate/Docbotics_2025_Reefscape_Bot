@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.Constants.ClimbConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
@@ -28,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.ClimbSub;
 import frc.robot.subsystems.CoralIntakeConsumerSub;
@@ -39,6 +41,8 @@ import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
 
 import java.time.Instant;
+
+import javax.naming.PartialResultException;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -230,6 +234,21 @@ public class RobotContainer {
           dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
     );
+
+    //Creates the Climber Motors to move out for hanging
+    Command ClimberOUT =
+    new ParallelCommandGroup(
+          new ClimbCMD(climbsub, ClimbConstants.kCLIMBhookon)
+    );
+
+    //Pulls the robot up when climber is in position
+    Command ClimberIN =
+    new ParallelCommandGroup(
+          new ClimbCMD(climbsub, ClimbConstants.kCLIMBLetGo)
+    );
+
+    
+   
     
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
@@ -240,11 +259,17 @@ public class RobotContainer {
     /**dismount Algea when up on the d-pad is pressed. */
 
 
-    isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
+    isDpadRightPressed.onTrue(dismountAlgeaL3CMD);
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
+    isDpadDownPressed.toggleOnTrue(ClimberOUT);
 
+    isDpadUpPressed.onTrue(ClimberIN);
+
+
+    SmartDashboard.putData(ClimberIN);
+    SmartDashboard.putData(ClimberIN);
     SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
     SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
 
