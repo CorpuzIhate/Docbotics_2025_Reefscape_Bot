@@ -32,7 +32,7 @@ public class AlignToBranchCMD extends Command {
         m_yController = new PIDController(Constants.AutoConstants.kPYController, Constants.AutoConstants.kIYController, Constants.AutoConstants.kDYController);
         m_rotationController = new PIDController(Constants.AutoConstants.kPThetaController, Constants.AutoConstants.kIThetaController, Constants.AutoConstants.kDThetaController);
 
-        m_rotationController.enableContinuousInput(0, 360); // important for heading
+        m_rotationController.enableContinuousInput(-180, 180); // important for heading
 
 
 
@@ -52,15 +52,15 @@ public class AlignToBranchCMD extends Command {
     public void execute() {
         SmartDashboard.putBoolean("running?",true);
 
-        if( LimelightHelpers.getTV(getName()))
+        if(!LimelightHelpers.getTV(""))
         {
             // No target found, stop.
             m_swerveSub.stopModules();
             return;
         }
 
-        double tx = LimelightHelpers.getTX(getName());
-        double ty = LimelightHelpers.getTX(getName());
+        double tx = LimelightHelpers.getTX("");
+        double ty = LimelightHelpers.getTY("");
 
         /*
          * x -> forward/ back from the robot
@@ -72,36 +72,59 @@ public class AlignToBranchCMD extends Command {
         double targetXOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetXOffset : Constants.AutoConstants.kRightBranchTargetXOffset;
         double targetYOffset = Constants.AutoConstants.kBranchTargetYOffset; // common Y offset
         double targetRotationOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetRotationOffset : Constants.AutoConstants.kRightBranchTargetRotationOffset;
+        
+        double currentHeading = m_swerveSub.getHeading();
+        double desiredHeading = 0; //FIX ME
 
         /*FOR NOW, NO OFFSETS */
-        double distanceFromRobotToTarget_meters = 
-        (Constants.LimelightConstants.reefTargetHeight_Inches - Constants.LimelightConstants.limelightHeight_inches) /
-         Math.tan(Constants.LimelightConstants.kLimeLightAngleFromGround_degrees + LimelightHelpers.getTY(getName()));
-         SmartDashboard.putNumber("distanceFromRobotToTarget_meters",distanceFromRobotToTarget_meters);
-        double targetXRelativeField = distanceFromRobotToTarget_meters * Math.sin(tx);
-        double targetYRelativeField = distanceFromRobotToTarget_meters * Math.cos(tx);
+        double distanceFromRobotToTarget_inches = 
+        (Constants.LimelightConstants.limelightHeight_inches - Constants.LimelightConstants.reefTargetHeight_Inches) /
+         Math.tan(Math.toRadians(Constants.LimelightConstants.kLimeLightAngleFromGround_degrees - ty));
+        
+        double targetXRelativeField = distanceFromRobotToTarget_inches * Math.sin(Math.toRadians(desiredHeading - currentHeading + tx));
+        double targetYRelativeField = distanceFromRobotToTarget_inches * Math.cos(Math.toRadians(desiredHeading - currentHeading + tx));
 
-        SmartDashboard.putNumber("targetXRelativeField",targetXRelativeField);
-        SmartDashboard.putNumber("targetYRelativeField",targetYRelativeField);
+
+        SmartDashboard.putNumber("ty", ty);
+        SmartDashboard.putNumber("tx", tx);
+        SmartDashboard.putNumber("currentHeading", currentHeading);
+        SmartDashboard.putNumber("desiredHeading", desiredHeading);
+
+
+
+
 
         // Calculate desired robot position based on limelight data and target offsets.
         double desiredX = targetXOffset; // Replace with actual calculations based on limelight and desired position.
         double desiredY = targetYOffset; // Replace with actual calculations based on limelight and desired position.
         double desiredRotation = targetRotationOffset; // Replace with actual calculations based on limelight and desired rotation.
         
-        SmartDashboard.putData("limeLight_xController",m_xController);
-        SmartDashboard.putData("limelight_yController",m_yController);
+        SmartDashboard.putData("limeLight_xController", m_xController);
+        SmartDashboard.putData("limelight_yController", m_yController);
+
 
         SmartDashboard.putData("limelight_thetaController",m_rotationController);
         // Calculate PID outputs.
-        double xOutput = m_xController.calculate(targetXRelativeField, 0); // replace 0 with current robot x.
-        double yOutput = m_yController.calculate(targetYRelativeField, 0); // replace 0 with current robot y.
-        double rotationOutput = m_rotationController.calculate(tx, 0); // using tx to correct rotation.
-
+        double xOutput = m_xController.calculate(targetYRelativeField, 0); // replace 0 with current robot x.
+        double yOutput = -m_yController.calculate(targetXRelativeField, 0); // replace 0 with current robot y.
+        double rotationOutput = -m_rotationController.calculate(currentHeading, desiredHeading); 
+        if (Math.abs(rotationOutput) < 0.05){
+            rotationOutput = 0;
+        }
+        if (Math.abs(xOutput) < 0.05){
+            xOutput = 0;
+        }
+        if (Math.abs(yOutput) < 0.05){
+            yOutput = 0;
+        }
         // Create chassis speeds and drive.
         ChassisSpeeds chassisSpeeds = new ChassisSpeeds(xOutput, -yOutput, -rotationOutput);
         /*convert chassis speeds into module states */
         SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
+        SmartDashboard.putNumber("rotationOutput", rotationOutput);
+        SmartDashboard.putNumber("xOutput", xOutput);
+        SmartDashboard.putNumber("yOutput", yOutput);
+
 
         
         // field relative

@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.config.LimelightHelpers;
 
 
 /**
@@ -89,6 +90,26 @@ public class Robot extends LoggedRobot {
    SmartDashboard.putNumber("intakeHeightSetPoint", m_robotContainer.
    elevatorSub.getIntakeHeightSetPoint_Inches());
 
+
+
+   /*TEMP DELETE ME LATER */
+   double currentHeading = m_robotContainer.swerveSub.getHeading();
+   double tx = LimelightHelpers.getTX("");
+   double desiredHeading = 0; //FIX ME
+    double ty = LimelightHelpers.getTY("");
+   double distanceFromRobotToTarget_inches = (Constants.LimelightConstants.limelightHeight_inches - Constants.LimelightConstants.reefTargetHeight_Inches) /
+   Math.tan(Math.toRadians(Constants.LimelightConstants.kLimeLightAngleFromGround_degrees - ty));
+
+   double targetXRelativeField = distanceFromRobotToTarget_inches * Math.sin(Math.toRadians(desiredHeading - currentHeading + tx));
+
+   double targetYRelativeField = distanceFromRobotToTarget_inches * Math.cos(Math.toRadians(desiredHeading - currentHeading + tx));
+   SmartDashboard.putNumber("distanceFromRobotToTarget_inches", distanceFromRobotToTarget_inches);
+   SmartDashboard.putNumber("targetXRelativeField",targetXRelativeField);
+   SmartDashboard.putNumber("targetYRelativeField",targetYRelativeField);
+   SmartDashboard.putNumber("BotPoseX",LimelightHelpers.getBotPose3d_TargetSpace("").getX());
+
+   SmartDashboard.putNumber("BotPoseY",LimelightHelpers.getBotPose3d_TargetSpace("").getY());
+   SmartDashboard.putNumber("BotPoseZ",-LimelightHelpers.getBotPose3d_TargetSpace("").getZ());
 
 
     

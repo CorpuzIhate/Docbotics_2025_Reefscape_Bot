@@ -305,7 +305,7 @@ public final class Constants {
 
     public static final double kPXController = 0.01;
     public static final double kPYController = 0.01;
-    public static final double kPThetaController = 0.01;
+    public static final double kPThetaController = 0.1;
 
     public static double kIXController = 0;
     public static double kIYController = 0;
@@ -334,11 +334,13 @@ public final class Constants {
 
   public static final class LimelightConstants{
     /**angle of limelight from the ground in degrees. */
-    public static double kLimeLightAngleFromGround_degrees = 15;
+    public static double kLimeLightAngleFromGround_degrees = 0;
     /**height of limelight from ground in inches. */
     public static double limelightHeight_inches = 12.625;
     /*height of the target from ground in inches. */
     public static double reefTargetHeight_Inches = 11.125;
+
+    
 
   }
 

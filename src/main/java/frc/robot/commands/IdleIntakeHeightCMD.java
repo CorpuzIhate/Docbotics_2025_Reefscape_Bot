@@ -11,6 +11,7 @@ import frc.robot.subsystems.ElevatorSub;
 public class IdleIntakeHeightCMD extends Command {
     public final ElevatorSub elevatorSub;
     public final SparkMax primaryLeftElevatorMotor;
+    
     public final SparkMax rightElevatorMotor;
     public final PIDController elevatorController;
 
