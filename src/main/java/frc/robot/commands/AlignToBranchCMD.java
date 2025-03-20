@@ -75,14 +75,10 @@ public class AlignToBranchCMD extends Command {
         
         double currentHeading = m_swerveSub.getHeading();
         double desiredHeading = 0; //FIX ME
-
-        /*FOR NOW, NO OFFSETS */
-        double distanceFromRobotToTarget_inches = 
-        (Constants.LimelightConstants.limelightHeight_inches - Constants.LimelightConstants.reefTargetHeight_Inches) /
-         Math.tan(Math.toRadians(Constants.LimelightConstants.kLimeLightAngleFromGround_degrees - ty));
         
-        double targetXRelativeField = distanceFromRobotToTarget_inches * Math.sin(Math.toRadians(desiredHeading - currentHeading + tx));
-        double targetYRelativeField = distanceFromRobotToTarget_inches * Math.cos(Math.toRadians(desiredHeading - currentHeading + tx));
+        double xDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getX();
+
+        double zDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getZ();
 
 
         SmartDashboard.putNumber("ty", ty);
@@ -105,8 +101,8 @@ public class AlignToBranchCMD extends Command {
 
         SmartDashboard.putData("limelight_thetaController",m_rotationController);
         // Calculate PID outputs.
-        double xOutput = m_xController.calculate(targetYRelativeField, 0); // replace 0 with current robot x.
-        double yOutput = -m_yController.calculate(targetXRelativeField, 0); // replace 0 with current robot y.
+        double xOutput = m_xController.calculate(zDistanceFromTarget_meters, 0); // replace 0 with current robot x.
+        double yOutput = m_yController.calculate(xDistanceFromTarget_meters, 0); // replace 0 with current robot y.
         double rotationOutput = -m_rotationController.calculate(currentHeading, desiredHeading); 
         if (Math.abs(rotationOutput) < 0.05){
             rotationOutput = 0;
