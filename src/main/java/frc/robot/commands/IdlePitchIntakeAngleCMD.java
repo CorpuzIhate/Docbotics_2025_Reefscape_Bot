@@ -9,12 +9,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CoralPitcherIntakeSub;
 
 public class IdlePitchIntakeAngleCMD extends Command {
+    /**Add subsystem, motor, PID Controller */
     private final CoralPitcherIntakeSub intakeSub;
     private final SparkMax intakePitcherMotor;
     private final PIDController intakePitchController;
 
 
     public IdlePitchIntakeAngleCMD(CoralPitcherIntakeSub intakeSub) {
+        /**Constructor for subsystem, motors and PIDcontrollers*/
         this.intakeSub = intakeSub;
         this.intakePitcherMotor = intakeSub.getIntakePitcherMotor();
         this.intakePitchController = intakeSub.getIntakePitchController();
@@ -31,7 +33,7 @@ public class IdlePitchIntakeAngleCMD extends Command {
         intakePitcherMotor.stopMotor();
 
        
-
+        /**Set command to running on the dashboard */
         SmartDashboard.putBoolean("isIdleIntakePitcherCommandRunning", true);
     }
 

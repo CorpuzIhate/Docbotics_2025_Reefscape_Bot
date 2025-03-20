@@ -22,7 +22,7 @@ public class ElevateIntakeToSetpointCMD extends Command {
      * @param intakeHeightSetPoint_Inches  intake height set point.
      */
     public ElevateIntakeToSetpointCMD(
-        /** Constructor for subsystem, motors, controller, and setpoints */
+        /** Constructor for subsystem, motors, PIDcontroller, and setpoints */
             ElevatorSub elevatorSub,
             double intakeHeightSetPoint_Inches) {
         this.elevatorSub = elevatorSub;
