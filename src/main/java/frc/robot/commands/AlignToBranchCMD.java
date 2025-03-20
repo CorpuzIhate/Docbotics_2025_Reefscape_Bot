@@ -1,6 +1,9 @@
 
 package frc.robot.commands;
 
+import java.lang.annotation.Target;
+import java.util.function.Supplier;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -19,12 +22,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class AlignToBranchCMD extends Command {
     private final SwerveSub m_swerveSub;
-    private final boolean m_alignLeft; // true for left branch, false for right
+    private final Supplier<Boolean>  m_alignLeft; // true for left branch, false for right
     private final PIDController m_xController;
     private final PIDController m_yController;
     private final PIDController m_rotationController;
  
-    public AlignToBranchCMD(SwerveSub swerveSub, boolean alignLeft) {
+    public AlignToBranchCMD(SwerveSub swerveSub, Supplier<Boolean>  alignLeft) {
         m_swerveSub = swerveSub;
         m_alignLeft = alignLeft;
 
@@ -69,9 +72,17 @@ public class AlignToBranchCMD extends Command {
          */
 
         // Adjust these target offsets based on your robot and field setup.
-        double targetXOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetXOffset : Constants.AutoConstants.kRightBranchTargetXOffset;
         double targetYOffset = Constants.AutoConstants.kBranchTargetYOffset; // common Y offset
-        double targetRotationOffset = m_alignLeft ? Constants.AutoConstants.kLeftBranchTargetRotationOffset : Constants.AutoConstants.kRightBranchTargetRotationOffset;
+        if(m_alignLeft.get()){
+            targetYOffset *= -1;
+
+
+        }
+        SmartDashboard.putBoolean("m_alignLeft?",m_alignLeft.get());
+
+        SmartDashboard.putNumber("targetYOffset?",targetYOffset);
+
+        
         
         double currentHeading = m_swerveSub.getHeading();
         double desiredHeading = 0; //FIX ME
@@ -90,26 +101,20 @@ public class AlignToBranchCMD extends Command {
 
 
 
-        // Calculate desired robot position based on limelight data and target offsets.
-        double desiredX = targetXOffset; // Replace with actual calculations based on limelight and desired position.
-        double desiredY = targetYOffset; // Replace with actual calculations based on limelight and desired position.
-        double desiredRotation = targetRotationOffset; // Replace with actual calculations based on limelight and desired rotation.
-        
+
         SmartDashboard.putData("limeLight_xController", m_xController);
         SmartDashboard.putData("limelight_yController", m_yController);
 
 
         SmartDashboard.putData("limelight_thetaController",m_rotationController);
         // Calculate PID outputs.
-        double xOutput = m_xController.calculate(zDistanceFromTarget_meters, 0); // replace 0 with current robot x.
-        double yOutput = m_yController.calculate(xDistanceFromTarget_meters, 0); // replace 0 with current robot y.
+        double xOutput = m_xController.calculate(zDistanceFromTarget_meters, 1.1); // replace 0 with current robot x.
+        double yOutput = m_yController.calculate(xDistanceFromTarget_meters, targetYOffset); // replace 0 with current robot y.
         double rotationOutput = -m_rotationController.calculate(currentHeading, desiredHeading); 
         if (Math.abs(rotationOutput) < 0.05){
             rotationOutput = 0;
         }
-        if (Math.abs(xOutput) < 0.05){
-            xOutput = 0;
-        }
+
         if (Math.abs(yOutput) < 0.05){
             yOutput = 0;
         }

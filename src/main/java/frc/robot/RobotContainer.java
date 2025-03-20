@@ -143,7 +143,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("consumeCoralAtCoralStation", consumerCoralAtCoralStation);
 
     /* binds Command to trigger. */
-    new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToCoralStationIdx).onTrue(consumerCoralAtCoralStation);
+    /*FIX ME */
+    // new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToCoralStationIdx).onTrue(consumerCoralAtCoralStation);
 
     /** Command to get intake to height and angular level 2 reef set-point. */
     Command scoreL2Reef = new ParallelCommandGroup(
@@ -159,7 +160,7 @@ public class RobotContainer {
    // new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).onTrue(scoreL2Reef);
 //TEMPEROARY
     new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).whileTrue(
-      new AlignToBranchCMD(swerveSub, false)
+      new AlignToBranchCMD(swerveSub, () -> driverJoyStick.getRawButton(Constants.OIConstants.kAlignLeft))
     );
     /** Command to get intake to height and angular level 3 reef set-point. */
     Command scoreL3Reef = new ParallelCommandGroup(

@@ -192,6 +192,9 @@ public final class Constants {
      * Prevents small changes in the joystick from moving the
      * robot.
      */
+
+     public static final int kAlignLeft = 5;
+
     public static final double kDeadband = 0.5;
 
   }
@@ -303,7 +306,7 @@ public final class Constants {
     public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
 
 
-    public static final double kPXController = 0.5;
+    public static final double kPXController = 0.3;
     public static final double kPYController = 0.5;
     public static final double kPThetaController = 0.1;
 
@@ -313,6 +316,7 @@ public final class Constants {
     public static double kDXController = 0;
     public static double kDYController = 0;
     public static double kDThetaController = 0;
+
     public static double kLeftBranchTargetXOffset = 0;
     public static double kBranchTargetYOffset = 0;
     public static double kLeftBranchTargetRotationOffset = 0;

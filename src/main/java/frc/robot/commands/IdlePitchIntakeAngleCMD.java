@@ -12,7 +12,6 @@ public class IdlePitchIntakeAngleCMD extends Command {
     private final CoralPitcherIntakeSub intakeSub;
     private final SparkMax intakePitcherMotor;
     private final PIDController intakePitchController;
-    private double setpoint_degrees;
 
     public IdlePitchIntakeAngleCMD(CoralPitcherIntakeSub intakeSub) {
         this.intakeSub = intakeSub;
