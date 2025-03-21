@@ -320,8 +320,8 @@ public final class Constants {
     public static final double kI = 0;
     public static final double kD = 0.0000525;
 
-    public static final double kCLIMBhookon = 90; //*will change */
-
+    //TODO: Change setpoints
+    public static final double kCLIMBhookon = 90; 
     public static final double kCLIMBLetGo = 0;
     
   } 
