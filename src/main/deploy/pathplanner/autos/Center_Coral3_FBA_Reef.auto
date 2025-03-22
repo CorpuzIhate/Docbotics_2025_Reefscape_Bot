@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "processor_F"
+            "pathName": "Center_F"
           }
         },
         {
@@ -68,6 +68,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Processor",
+  "folder": "Center",
   "choreoAuto": false
 }

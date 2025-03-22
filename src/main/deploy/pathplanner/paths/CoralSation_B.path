@@ -20,7 +20,7 @@
         "y": 4.015028409090909
       },
       "prevControl": {
-        "x": 1.4059943181818193,
+        "x": 1.4059943181818197,
         "y": 4.0249999999999995
       },
       "nextControl": null,
@@ -57,7 +57,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "StartCoralStation",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -126.22301257549856

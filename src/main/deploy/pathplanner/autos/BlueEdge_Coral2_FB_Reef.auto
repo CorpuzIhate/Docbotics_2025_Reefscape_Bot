@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "processor_F"
+            "pathName": "BlueEdge_F"
           }
         },
         {
@@ -41,33 +41,15 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "B_CoralSation"
-          }
-        },
-        {
           "type": "named",
           "data": {
-            "name": "intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CoralStation_A"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "outtake"
+            "name": "resetSwerveModuleSpeedsCMD"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Processor",
+  "folder": "BlueEdge",
   "choreoAuto": false
 }

@@ -212,11 +212,6 @@ public class RobotContainer {
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
-    SmartDashboard.putData("Center_1Coral_F2_Reef" ,new PathPlannerAuto("Center_1Coral_F2_Reef"));
-    SmartDashboard.putData("Center_1Coral_I2_CoralStation" ,new PathPlannerAuto("Center_1Coral_I2_CoralStation"));
-
-    SmartDashboard.putData("Center_1Coral_I2_Reef" ,new PathPlannerAuto("Center_1Coral_I2_Reef"));
-
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     
   }

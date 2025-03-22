@@ -73,7 +73,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "StartCoralStation",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -126.22301257549856

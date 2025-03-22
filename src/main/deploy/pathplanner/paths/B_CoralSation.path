@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.51780303030303,
+        "x": 1.5178030303030299,
         "y": 3.7200757575757577
       },
       "isLocked": false,
@@ -73,7 +73,7 @@
     "rotation": -126.22301257549856
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Branch",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0

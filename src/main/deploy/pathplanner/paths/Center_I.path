@@ -12,7 +12,7 @@
         "y": 7.608625856164384
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Center"
     },
     {
       "anchor": {
@@ -57,7 +57,7 @@
     "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Center",
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": 180.0

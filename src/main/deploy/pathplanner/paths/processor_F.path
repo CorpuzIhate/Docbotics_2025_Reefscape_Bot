@@ -63,10 +63,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 120.9086494751306
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Processor",
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": 180.0
