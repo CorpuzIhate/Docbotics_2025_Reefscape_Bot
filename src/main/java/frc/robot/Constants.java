@@ -162,7 +162,7 @@ public final class Constants {
     /** Configure robot into field oriented mode button. */
     public static final int kDriverFieldOrientedButtonIdx = 1;
     /** Orient to Target button. B button. */
-    public static final int kOrientToTargetIdx = 2;
+    public static final int kOrientToTargetIdx = 10;
     /** reset gyro buttton. */
     public static final int kDriveGyroResetButtonIdx = 7;
 
