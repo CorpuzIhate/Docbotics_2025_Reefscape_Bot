@@ -2,7 +2,6 @@
 package frc.robot.commands;
 
 import java.lang.annotation.Target;
-import java.util.Vector;
 import java.util.function.Supplier;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -21,31 +20,21 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class AlignToBranchCMD extends Command {
+public class AlignToReefTagCMD extends Command {
     private final SwerveSub m_swerveSub;
-    private final Supplier<Boolean>  m_alignLeft; // true for left branch, false for right
     private final PIDController m_xController;
     private final PIDController m_yController;
     private final PIDController m_rotationController;
-    private final Translation2d m_initalRobotPos_meters;
-
-
-
  
-    public AlignToBranchCMD(SwerveSub swerveSub, Supplier<Boolean>  alignLeft) {
+    public AlignToReefTagCMD(SwerveSub swerveSub) {
         m_swerveSub = swerveSub;
-        m_alignLeft = alignLeft;
-
+        /*initialize PID Chassis position controllers. */
         m_xController = new PIDController(Constants.AutoConstants.kPXController, Constants.AutoConstants.kIXController, Constants.AutoConstants.kDXController);
         m_yController = new PIDController(Constants.AutoConstants.kPYController, Constants.AutoConstants.kIYController, Constants.AutoConstants.kDYController);
         m_rotationController = new PIDController(Constants.AutoConstants.kPThetaController, Constants.AutoConstants.kIThetaController, Constants.AutoConstants.kDThetaController);
 
         m_rotationController.enableContinuousInput(-180, 180); // important for heading
 
-        /*gets the initial displacement from the  from where the robot started
-        of the robot in meters.
-         */
-        m_initalRobotPos_meters = swerveSub.getPose().getTranslation();
 
 
         addRequirements(swerveSub);
@@ -56,7 +45,6 @@ public class AlignToBranchCMD extends Command {
         m_xController.reset();
         m_yController.reset();
         m_rotationController.reset();
-
 
     }
 
@@ -73,18 +61,7 @@ public class AlignToBranchCMD extends Command {
          * y -> left / right from the robot
          * 
          */
-
-        // Adjust these target offsets based on your robot and field setup.
-        double targetYOffset = Constants.AutoConstants.kBranchTargetYOffset; // common Y offset
-        if(m_alignLeft.get()){
-            targetYOffset *= -1;
-        }
-
-        SmartDashboard.putBoolean("m_alignLeft?",m_alignLeft.get());
-
-        SmartDashboard.putNumber("targetYOffset?",targetYOffset);
-
-        
+ 
         
         /**gets the current heading of the robot in degrees. The is from -180 to 180 */
         double currentHeading = m_swerveSub.getHeading();
@@ -92,23 +69,12 @@ public class AlignToBranchCMD extends Command {
 
         double desiredHeading = 0; //FIX ME
         
-
-        /*gets the current displacement from where the robot started
-        of the robot in meters.
-         */
-        Translation2d currentRobotPos_meters = m_swerveSub.getPose().getTranslation();
-
-        /*gets displacement from initial position from when the 
-         * command starts.
-          */
-        Translation2d displacementFromInitialPos = 
-        currentRobotPos_meters.minus(m_initalRobotPos_meters);    
+        /**gets left and right distance in meters from A-tag. */
+        double yDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getX();
+        /**gets forward and right distance in meters from A-tag. */
+        double xDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getZ();
 
         /**Sends telemetry related to the alignment with the reef branch. */
-        SmartDashboard.putNumber("displacementFromInitialPos.getX()", displacementFromInitialPos.getX());
-        SmartDashboard.putNumber("displacementFromInitialPos.getY()", displacementFromInitialPos.getY());
-
-        SmartDashboard.putNumber("tx", tx);
         SmartDashboard.putNumber("ty", ty);
         SmartDashboard.putNumber("tx", tx);
         SmartDashboard.putNumber("currentHeading", currentHeading);
@@ -118,8 +84,12 @@ public class AlignToBranchCMD extends Command {
         SmartDashboard.putData("limelight_thetaController",m_rotationController);
 
         // Calculate PID outputs.
-        double xOutput = m_xController.calculate(displacementFromInitialPos.getX(), 1.1); 
-        double yOutput = m_yController.calculate(displacementFromInitialPos.getY(), targetYOffset); 
+        /*makes the chassis go look directly at A-tag be, have no left or right 
+         * distance from the A-tag, with a 1.1 m distance from the front bumper of 
+         * the robot.
+          */
+        double xOutput = m_xController.calculate(xDistanceFromTarget_meters, 1.1); 
+        double yOutput = m_yController.calculate(yDistanceFromTarget_meters, 0); 
         double rotationOutput = m_rotationController.calculate(currentHeading, desiredHeading); 
 
         /**applies a deadband to motor outputs.*/
@@ -158,7 +128,6 @@ public class AlignToBranchCMD extends Command {
         if(!LimelightHelpers.getTV(""))
         {
             // No target found, stop.
-            m_swerveSub.stopModules();
             return true;
         }
         /*if we're close enough to being aligned with the 

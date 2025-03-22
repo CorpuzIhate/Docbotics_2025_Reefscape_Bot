@@ -9,6 +9,7 @@ import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
 import frc.robot.commands.AlignToBranchCMD;
+import frc.robot.commands.AlignToReefTagCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
@@ -158,9 +159,12 @@ public class RobotContainer {
 
     /** binds Command to trigger. */
    // new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).onTrue(scoreL2Reef);
-//TEMPEROARY
-    new JoystickButton(driverJoyStick, OIConstants.kMoveIntakeToLevel2Idx).whileTrue(
-      new AlignToBranchCMD(swerveSub, () -> driverJoyStick.getRawButton(Constants.OIConstants.kAlignLeft))
+
+    new JoystickButton(driverJoyStick, OIConstants.kOrientToTargetIdx).whileTrue(
+      new SequentialCommandGroup(
+        new AlignToReefTagCMD(swerveSub ),
+        new AlignToBranchCMD(swerveSub, () -> driverJoyStick.getRawButton(OIConstants.kAlignLeft))
+      )
     );
     /** Command to get intake to height and angular level 3 reef set-point. */
     Command scoreL3Reef = new ParallelCommandGroup(

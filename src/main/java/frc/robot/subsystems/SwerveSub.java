@@ -265,7 +265,7 @@ public class SwerveSub extends SubsystemBase {
     }
 
     /**
-     * Converts the the gyros heading output between 0 and 360 degrees
+     * Converts the the gyros heading output between -180 and 180 degrees
      * because gyro is naturally continuous.
      */
     public double getHeading() {
