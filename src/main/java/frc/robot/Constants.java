@@ -318,9 +318,9 @@ public final class Constants {
     public static double kDThetaController = 0;
 
     public static double kLeftBranchTargetXOffset = 0;
-    public static double kBranchTargetYOffset = 0.309;
+    public static double kBranchTargetYOffset = 0.244;
     public static double kLeftBranchTargetRotationOffset = 0;
-    public static double kRightBranchTargetXOffset = 0;
+    public static double kRightBranchTargetXOffset = 0.85;
     public static double kRightBranchTargetRotationOffset = 0;
 
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
