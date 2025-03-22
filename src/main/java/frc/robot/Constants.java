@@ -307,7 +307,7 @@ public final class Constants {
 
 
     public static final double kPXController = 0.3;
-    public static final double kPYController = 0.5;
+    public static final double kPYController = 0.8;
     public static final double kPThetaController = 0.1;
 
     public static double kIXController = 0;
@@ -317,10 +317,9 @@ public final class Constants {
     public static double kDYController = 0;
     public static double kDThetaController = 0;
 
-    public static double kLeftBranchTargetXOffset = 0;
-    public static double kBranchTargetYOffset = 0.244;
+    public static double kLeftBranchTargetXOffset = 0.8226;
+    public static double kBranchTargetYOffset = 0.311;
     public static double kLeftBranchTargetRotationOffset = 0;
-    public static double kRightBranchTargetXOffset = 0.85;
     public static double kRightBranchTargetRotationOffset = 0;
 
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
@@ -343,6 +342,13 @@ public final class Constants {
     public static double limelightHeight_inches = 12.625;
     /*height of the target from ground in inches. */
     public static double reefTargetHeight_Inches = 11.125;
+
+    public static double tagID17Angle = 60;
+    public static double tagID18Angle = 60;
+    public static double tagID19Angle = 60;
+    public static double tagID20Angle = 60;
+    public static double tagID21Angle = 60;
+    public static double tagID22Angle = 60;
 
     
 

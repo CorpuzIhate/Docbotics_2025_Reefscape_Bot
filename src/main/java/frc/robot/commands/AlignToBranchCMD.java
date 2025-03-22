@@ -103,10 +103,17 @@ public class AlignToBranchCMD extends Command {
 
 
         SmartDashboard.putData("limelight_thetaController",m_rotationController);
+        
+
+
+
         // Calculate PID outputs.
         double xOutput = m_xController.calculate(zDistanceFromTarget_meters, Constants.AutoConstants.kLeftBranchTargetXOffset); // replace 0 with current robot x.
         double yOutput = m_yController.calculate(xDistanceFromTarget_meters, targetYOffset); // replace 0 with current robot y.
         double rotationOutput = -m_rotationController.calculate(currentHeading, desiredHeading); 
+        if (Math.abs(xOutput) < 0.05){
+            xOutput = 0;
+        }
         if (Math.abs(rotationOutput) < 0.05){
             rotationOutput = 0;
         }
