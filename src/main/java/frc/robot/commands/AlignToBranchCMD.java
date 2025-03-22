@@ -73,11 +73,7 @@ public class AlignToBranchCMD extends Command {
 
         // Adjust these target offsets based on your robot and field setup.
         double targetYOffset = Constants.AutoConstants.kBranchTargetYOffset; // common Y offset
-        if(m_alignLeft.get()){
-            targetYOffset *= -1;
 
-
-        }
         SmartDashboard.putBoolean("m_alignLeft?",m_alignLeft.get());
 
         SmartDashboard.putNumber("targetYOffset?",targetYOffset);
@@ -85,7 +81,7 @@ public class AlignToBranchCMD extends Command {
         
         
         double currentHeading = m_swerveSub.getHeading();
-        double desiredHeading = 0; //FIX ME
+        double desiredHeading = 60; 
         
         double xDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getX();
 

@@ -318,7 +318,7 @@ public final class Constants {
     public static double kDThetaController = 0;
 
     public static double kLeftBranchTargetXOffset = 0;
-    public static double kBranchTargetYOffset = 0;
+    public static double kBranchTargetYOffset = 0.309;
     public static double kLeftBranchTargetRotationOffset = 0;
     public static double kRightBranchTargetXOffset = 0;
     public static double kRightBranchTargetRotationOffset = 0;
