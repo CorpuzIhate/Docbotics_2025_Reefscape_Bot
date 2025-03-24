@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.config.LimelightHelpers;
 
 
 /**
@@ -89,6 +90,13 @@ public class Robot extends LoggedRobot {
    );
    SmartDashboard.putNumber("intakeHeightSetPoint", m_robotContainer.
    elevatorSub.getIntakeHeightSetPoint_Inches());
+
+
+   SmartDashboard.putNumber("BotPoseX",LimelightHelpers.getBotPose3d_TargetSpace("").getX());
+
+   SmartDashboard.putNumber("BotPoseY",LimelightHelpers.getBotPose3d_TargetSpace("").getY());
+   SmartDashboard.putNumber("BotPoseZ",-LimelightHelpers.getBotPose3d_TargetSpace("").getZ());
+
 
 
 
