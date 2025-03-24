@@ -188,6 +188,7 @@ public class RobotContainer {
           dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
     );
+
     Command dismountAlgeaL3CMD = 
     new SequentialCommandGroup(
       new InstantCommand(() -> { dismountSub.setIsHoldPosition(!dismountSub.getIsHoldPosition());}),
@@ -201,21 +202,30 @@ public class RobotContainer {
         ()-> { return dismountSub.getIsHoldPosition();})
     );
 
+
     Command autoDismountAlgeaL3CMD = 
     new InstantCommand(() ->  {
       dismountSub.setIsHoldPosition(true);
       dismountSpinSub.getDismountSpinMotor().set(0.6);
       dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);});
+    NamedCommands.registerCommand("autoDismountAlgeaL3CMD", autoDismountAlgeaL3CMD);
+
+
     Command autoDismountAlgeaL2CMD = 
     new InstantCommand(() ->  {
       dismountSub.setIsHoldPosition(true);
       dismountSpinSub.getDismountSpinMotor().set(0.6);
       dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);});
+    NamedCommands.registerCommand("autoDismountAlgeaL2CMD", autoDismountAlgeaL2CMD);
+
+
     Command autoDismountDefaultCMD = 
     new InstantCommand(() ->  {
       dismountSub.setIsHoldPosition(true);
-      dismountSpinSub.getDismountSpinMotor().set(0.6);
+      dismountSpinSub.getDismountSpinMotor().set(0);
       dismountSub.setSetpoint(0);});
+    NamedCommands.registerCommand("autoDismountDefaultCMD", autoDismountDefaultCMD);
+
 
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});

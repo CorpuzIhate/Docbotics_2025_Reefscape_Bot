@@ -1,17 +1,19 @@
 {
   "robotWidth": 0.81,
   "robotLength": 1.04,
-  "holonomicMode": false,
+  "holonomicMode": true,
   "pathFolders": [
-    "Processor",
     "BlueEdge",
     "Branch",
     "Center",
+    "Dismount",
+    "Processor",
     "StartCoralStation"
   ],
   "autoFolders": [
-    "Center",
     "BlueEdge",
+    "Center",
+    "Dismount",
     "Processor"
   ],
   "defaultMaxVel": 4.2,

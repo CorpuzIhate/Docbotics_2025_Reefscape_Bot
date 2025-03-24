@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.2165340909090911,
-        "y": 0.8241193181818176
+        "x": 7.029971590909091,
+        "y": 3.955198863636363
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0165529010238905,
-        "y": 2.0084470989761085
+        "x": 6.02997159090909,
+        "y": 3.955198863636363
       },
       "isLocked": false,
-      "linkedName": "coralStation"
+      "linkedName": "Center"
     },
     {
       "anchor": {
-        "x": 3.410284090909091,
-        "y": 4.015028409090909
+        "x": 5.472799295774647,
+        "y": 3.955198863636363
       },
       "prevControl": {
-        "x": 1.4059943181818202,
-        "y": 4.0249999999999995
+        "x": 6.472799295774647,
+        "y": 3.955198863636363
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Reef_B"
+      "linkedName": "Dismount_GH"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Reef",
-      "waypointRelativePos": 0.5241844769403776,
+      "name": "",
+      "waypointRelativePos": 0.8450106157112526,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "scoreL2Reef"
+          "name": "autoDismountAlgeaL2CMD"
         }
       }
     }
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "StartCoralStation",
+  "folder": "Dismount",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -126.22301257549856
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }
