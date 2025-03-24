@@ -242,6 +242,13 @@ public final class Constants {
     public static final double kPXController = 1.5;
     public static final double kPYController = 1.5;
     public static final double kPThetaController = 3;
+    
+    public static final double kIXController = 0;
+    public static final double kDXController = 0;
+    public static final double kIYController = 0;
+    public static final double kDYController = 0;
+    public static final double kIThetaController = 0;
+    public static final double kDThetaController = 0;
 
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
         new TrapezoidProfile.Constraints(
@@ -251,6 +258,15 @@ public final class Constants {
     public static final class autoCommands {
       public static final String moveArmCMD = "moveArmCMD";
     }
+
+
+
+  }
+  public static final class LimeLightConstants{
+    public static final double kBranchTargetYOffset = 0;
+    public static double kLeftBranchTargetXOffset = 0;
+
+
 
   }
 
