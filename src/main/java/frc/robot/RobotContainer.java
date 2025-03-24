@@ -200,6 +200,23 @@ public class RobotContainer {
           dismountSpinSub.getDismountSpinMotor().set(0);}), 
         ()-> { return dismountSub.getIsHoldPosition();})
     );
+
+    Command autoDismountAlgeaL3CMD = 
+    new InstantCommand(() ->  {
+      dismountSub.setIsHoldPosition(true);
+      dismountSpinSub.getDismountSpinMotor().set(0.6);
+      dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL3_degrees);});
+    Command autoDismountAlgeaL2CMD = 
+    new InstantCommand(() ->  {
+      dismountSub.setIsHoldPosition(true);
+      dismountSpinSub.getDismountSpinMotor().set(0.6);
+      dismountSub.setSetpoint(DismountConstants.dismountAlegeSetpointL2_degrees);});
+    Command autoDismountDefaultCMD = 
+    new InstantCommand(() ->  {
+      dismountSub.setIsHoldPosition(true);
+      dismountSpinSub.getDismountSpinMotor().set(0.6);
+      dismountSub.setSetpoint(0);});
+
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
     Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
