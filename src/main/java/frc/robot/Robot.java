@@ -97,6 +97,12 @@ public class Robot extends LoggedRobot {
    SmartDashboard.putNumber("BotPoseY",LimelightHelpers.getBotPose3d_TargetSpace("").getY());
    SmartDashboard.putNumber("BotPoseZ",-LimelightHelpers.getBotPose3d_TargetSpace("").getZ());
 
+   SmartDashboard.putBoolean("isYPosOrientedToTarget",m_robotContainer.limelightSub.isYPosOrientedToTarget(
+    -LimelightHelpers.getBotPose3d_TargetSpace("").getZ()
+   ));
+   SmartDashboard.putBoolean("isXPosOrientedToTarget",m_robotContainer.limelightSub.isXPosOrientedToTarget(
+    LimelightHelpers.getBotPose3d_TargetSpace("").getX()
+   ));
 
 
 
@@ -167,4 +173,5 @@ public class Robot extends LoggedRobot {
   /** This function is called periodically whilst in simulation. */
   @Override
   public void simulationPeriodic() {}
+
 }

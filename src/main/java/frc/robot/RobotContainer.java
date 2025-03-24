@@ -55,7 +55,7 @@ public class RobotContainer {
   public final CoralPitcherIntakeSub coralPitcherIntakeSub = new CoralPitcherIntakeSub();
   private final CoralIntakeConsumerSub coralIntakeConsumerSub = new CoralIntakeConsumerSub();
   // private final ArmSub armsub = new ArmSub();
-  private final LimelightSub limelightSub = new LimelightSub();
+  public final LimelightSub limelightSub = new LimelightSub();
   public final ElevatorSub elevatorSub = new ElevatorSub();
   private final DismountSub dismountSub = new DismountSub();
   private final DismountSpinSub dismountSpinSub = new DismountSpinSub();

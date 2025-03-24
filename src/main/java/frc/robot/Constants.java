@@ -263,8 +263,13 @@ public final class Constants {
 
   }
   public static final class LimeLightConstants{
-    public static final double kBranchTargetYOffset = 0;
-    public static double kLeftBranchTargetXOffset = 0;
+    public static final String LeftLimeLightName ="Left_LimeLight";
+    public static final String RightLimeLightName ="Right_LimeLight";
+
+    public static final double kBranchTargetYOffsetTolerance = 0.01;
+
+    public static final double kBranchTargetYOffset = 0.311;
+    public static double kLeftBranchTargetXOffset = 0.8226;
 
 
 
