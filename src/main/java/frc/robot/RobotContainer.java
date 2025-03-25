@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
+import frc.robot.commands.AlignToBranchCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
@@ -59,11 +60,18 @@ public class RobotContainer {
   public final ElevatorSub elevatorSub = new ElevatorSub();
   private final DismountSub dismountSub = new DismountSub();
   private final DismountSpinSub dismountSpinSub = new DismountSpinSub();
+      /*checks whether up on the d-pad is pressed. */
+
 
 
   private final SendableChooser<Command> autoChooser;
   private final Joystick driverJoyStick = new Joystick(OIConstants.kDriverControllerPort);
   
+  private final Joystick operatorJoystick = new Joystick(OIConstants.kOperatorControllerPort);
+
+  private final Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
+  private final Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
+  private final Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
   public RobotContainer() {
 
@@ -217,17 +225,23 @@ public class RobotContainer {
       dismountSpinSub.getDismountSpinMotor().set(0.6);
       dismountSub.setSetpoint(0);});
 
-    /*checks whether up on the d-pad is pressed. */
-    Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
-    Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
-    Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
+    
+
+
 
     /**dismount Algea when up on the d-pad is pressed. */
 
-
     isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
-
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
+
+
+    /**align to branch if button is pressed */
+    new JoystickButton(operatorJoystick, OIConstants.kAlignLeftBranch ).whileTrue(
+      new AlignToBranchCMD(swerveSub, true)
+    );
+    new JoystickButton(operatorJoystick, OIConstants.kAlignRightBranch ).whileTrue(
+      new AlignToBranchCMD(swerveSub, false)
+    );
 
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     

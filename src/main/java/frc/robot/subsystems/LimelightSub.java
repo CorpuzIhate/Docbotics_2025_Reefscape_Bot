@@ -15,6 +15,6 @@ public class LimelightSub extends SubsystemBase {
     /**Check if robot is in the correct x Pos for branch Alignment */
 
     public boolean isXPosOrientedToTarget(double robotXPos_meter) {
-        return robotXPos_meter <= LimeLightConstants.kLeftBranchTargetXOffset;
+        return robotXPos_meter <= LimeLightConstants.kLeftBranchTargetYOffset;
     }
 }

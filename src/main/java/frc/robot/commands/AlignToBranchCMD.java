@@ -22,12 +22,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class AlignToBranchCMD extends Command {
     private final SwerveSub m_swerveSub;
-    private final Supplier<Boolean>  m_alignLeft; // true for left branch, false for right
+    private final boolean  m_alignLeft; // true for left branch, false for right
     private final PIDController m_xController;
     private final PIDController m_yController;
     private final PIDController m_rotationController;
+
+    /**this is the name of Limelight we are using depending on if 
+    * we're aligning to the left of right branch of the reef.
+    */
+    private String MainLimelight = Constants.LimeLightConstants.LeftLimeLight;
+    private double targetYOffset = Constants.LimeLightConstants.kRightBranchTargetYOffset; 
  
-    public AlignToBranchCMD(SwerveSub swerveSub, Supplier<Boolean>  alignLeft) {
+    public AlignToBranchCMD(SwerveSub swerveSub, boolean  alignLeft) {
         m_swerveSub = swerveSub;
         m_alignLeft = alignLeft;
 
@@ -47,23 +53,35 @@ public class AlignToBranchCMD extends Command {
         m_xController.reset();
         m_yController.reset();
         m_rotationController.reset();
+        SmartDashboard.putBoolean("m_alignLeft?",m_alignLeft);
+
+
+
+        /**if were aligning to the left reef branch
+         * use the Right Limelight and use left y Offset. 
+         * otherwise use the Left 
+         * LimeLight and right y offset.
+         */
+        if(m_alignLeft){
+            MainLimelight = Constants.LimeLightConstants.RightLimeLight;
+            targetYOffset = Constants.LimeLightConstants.kLeftBranchTargetYOffset; 
+
+        }
 
         SmartDashboard.putBoolean("running?",true);
     }
 
     @Override
     public void execute() {
-        SmartDashboard.putBoolean("running?",true);
 
-        if(!LimelightHelpers.getTV(""))
-        {
-            // No target found, stop.
-            m_swerveSub.stopModules();
-            return;
-        }
+        
+        // Adjust these target offsets based on your robot and field setup.
+        SmartDashboard.putNumber("targetYOffset?",targetYOffset);
+        
 
-        double tx = LimelightHelpers.getTX("");
-        double ty = LimelightHelpers.getTY("");
+
+        double tx = LimelightHelpers.getTX(MainLimelight);
+        double ty = LimelightHelpers.getTY(MainLimelight);
 
         /*
          * x -> forward/ back from the robot
@@ -71,21 +89,15 @@ public class AlignToBranchCMD extends Command {
          * 
          */
 
-        // Adjust these target offsets based on your robot and field setup.
-        double targetYOffset = Constants.LimeLightConstants.kBranchTargetYOffset; // common Y offset
 
-        SmartDashboard.putBoolean("m_alignLeft?",m_alignLeft.get());
 
-        SmartDashboard.putNumber("targetYOffset?",targetYOffset);
 
-        
         
         double currentHeading = m_swerveSub.getHeading();
-        double desiredHeading = 60; 
-        
-        double xDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getX();
+        double desiredHeading = 60;  //FIX ME
 
-        double zDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace("").getZ();
+        double xDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace(MainLimelight).getZ();
+        double yDistanceFromTarget_meters = LimelightHelpers.getBotPose3d_TargetSpace(MainLimelight).getX();
 
 
         SmartDashboard.putNumber("ty", ty);
@@ -94,22 +106,16 @@ public class AlignToBranchCMD extends Command {
         SmartDashboard.putNumber("desiredHeading", desiredHeading);
 
 
-
-
-
-
         SmartDashboard.putData("limeLight_xController", m_xController);
         SmartDashboard.putData("limelight_yController", m_yController);
-
-
         SmartDashboard.putData("limelight_thetaController",m_rotationController);
         
 
 
 
         // Calculate PID outputs.
-        double xOutput = m_xController.calculate(zDistanceFromTarget_meters, Constants.LimeLightConstants.kLeftBranchTargetXOffset); // replace 0 with current robot x.
-        double yOutput = m_yController.calculate(xDistanceFromTarget_meters, targetYOffset); // replace 0 with current robot y.
+        double xOutput = m_xController.calculate(xDistanceFromTarget_meters, Constants.LimeLightConstants.kLeftBranchTargetYOffset); // replace 0 with current robot x.
+        double yOutput = m_yController.calculate(yDistanceFromTarget_meters, targetYOffset); // replace 0 with current robot y.
         double rotationOutput = -m_rotationController.calculate(currentHeading, desiredHeading); 
         if (Math.abs(xOutput) < 0.05){
             xOutput = 0;
@@ -145,6 +151,12 @@ public class AlignToBranchCMD extends Command {
 
     @Override
     public boolean isFinished() {
+        if(!LimelightHelpers.getTV(MainLimelight))
+        {
+            // No target found, stop.
+            m_swerveSub.stopModules();
+            return true;
+        }
         // You might want to add a tolerance check here to stop when close enough to the target.
         return false; // Run until interrupted by driver.
     }

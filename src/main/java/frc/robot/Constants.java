@@ -100,6 +100,8 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
+
 
     public static final int kDriverXAxis = 0;
     public static final int kDriverYAxis = 1;
@@ -130,9 +132,12 @@ public final class Constants {
      * (A button)
      */
     public static final int kMoveIntakeToLevel3Idx = 6;
-
     public static final int kMoveIntakeToCoralStationIdx = 5;
+  
     public static final int kSlowModeIdx = 4;
+
+    public static final int kAlignLeftBranch = 5;
+    public static final int kAlignRightBranch = 6;
 
 
     public static final double kDeadband = 0.5;
@@ -263,13 +268,32 @@ public final class Constants {
 
   }
   public static final class LimeLightConstants{
-    public static final String LeftLimeLightName ="Left_LimeLight";
-    public static final String RightLimeLightName ="Right_LimeLight";
+    public static final String LeftLimeLight ="Left_LimeLight";
+    public static final String RightLimeLight ="Right_LimeLight";
 
     public static final double kBranchTargetYOffsetTolerance = 0.01;
 
     public static final double kBranchTargetYOffset = 0.311;
-    public static double kLeftBranchTargetXOffset = 0.8226;
+    public static final double kLeftBranchTargetYOffset = 0.8226;
+    public static final double kRightBranchTargetYOffset = 0.8226;
+
+    public static final class reefAngleSetpoints_degrees{
+      public static double tag6ID = 60.0;
+        public static double tag7ID = 0.0;
+        public static double tag8ID = -60.0;
+        public static double tag9ID = -120.0;
+        public static double tag10ID = 180.0;
+        public static double tag11ID = 120.0;
+
+        public static double tag17ID = -60.0;
+        public static double tag18ID = 0.0;
+        public static double tag19ID = 60.0;
+        public static double tag20ID = 120.0;
+        public static double tag21ID = 180.0;
+        public static double tag22ID = -120.0;
+
+      
+    }
 
 
 

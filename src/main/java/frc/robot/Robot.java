@@ -92,17 +92,21 @@ public class Robot extends LoggedRobot {
    elevatorSub.getIntakeHeightSetPoint_Inches());
 
 
-   SmartDashboard.putNumber("BotPoseX",LimelightHelpers.getBotPose3d_TargetSpace("").getX());
+   SmartDashboard.putNumber("BotPoseX_LeftLimeLight",LimelightHelpers.getBotPose3d_TargetSpace(Constants.LimeLightConstants.LeftLimeLight).getX());
+   SmartDashboard.putNumber("BotPoseY_LeftLimeLight",LimelightHelpers.getBotPose3d_TargetSpace(Constants.LimeLightConstants.LeftLimeLight).getY());
+   SmartDashboard.putNumber("BotPoseZ_LeftLimeLight",-LimelightHelpers.getBotPose3d_TargetSpace(Constants.LimeLightConstants.LeftLimeLight).getZ());
 
-   SmartDashboard.putNumber("BotPoseY",LimelightHelpers.getBotPose3d_TargetSpace("").getY());
-   SmartDashboard.putNumber("BotPoseZ",-LimelightHelpers.getBotPose3d_TargetSpace("").getZ());
+   SmartDashboard.putNumber("BotPoseX_RightLimeLight",LimelightHelpers.getBotPose3d_TargetSpace(Constants.LimeLightConstants.RightLimeLight).getX());
+   SmartDashboard.putNumber("BotPoseY_RightLimeLight",LimelightHelpers.getBotPose3d_TargetSpace(Constants.LimeLightConstants.RightLimeLight).getY());
+   SmartDashboard.putNumber("BotPoseZ_RightLimeLight",-LimelightHelpers.getBotPose3d_TargetSpace(Constants.LimeLightConstants.RightLimeLight).getZ());
 
-   SmartDashboard.putBoolean("isYPosOrientedToTarget",m_robotContainer.limelightSub.isYPosOrientedToTarget(
-    -LimelightHelpers.getBotPose3d_TargetSpace("").getZ()
-   ));
-   SmartDashboard.putBoolean("isXPosOrientedToTarget",m_robotContainer.limelightSub.isXPosOrientedToTarget(
-    LimelightHelpers.getBotPose3d_TargetSpace("").getX()
-   ));
+   
+  //  SmartDashboard.putBoolean("isYPosOrientedToTarget",m_robotContainer.limelightSub.isYPosOrientedToTarget(
+  //   -LimelightHelpers.getBotPose3d_TargetSpace("").getZ()
+  //  ));
+  //  SmartDashboard.putBoolean("isXPosOrientedToTarget",m_robotContainer.limelightSub.isXPosOrientedToTarget(
+  //   LimelightHelpers.getBotPose3d_TargetSpace("").getX()
+  //  ));
 
 
 
