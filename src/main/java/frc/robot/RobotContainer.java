@@ -11,6 +11,7 @@ import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
+import frc.robot.commands.LockWheelsCMD;
 import frc.robot.commands.powerCoralIntakeCMD;
 import frc.robot.commands.powerDismountSpinMotorCMD;
 import frc.robot.commands.ManageLimeLightCMD;
@@ -37,6 +38,7 @@ import frc.robot.subsystems.SwerveSub;
 import frc.robot.subsystems.LimelightSub;
 
 import java.time.Instant;
+import java.util.concurrent.locks.LockSupport;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -228,6 +230,9 @@ public class RobotContainer {
     isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
+
+    new JoystickButton(driverJoyStick, Constants.OIConstants.kLockWheelsButton).
+    whileTrue(new LockWheelsCMD(swerveSub));
 
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     
