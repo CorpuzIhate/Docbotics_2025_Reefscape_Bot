@@ -28,7 +28,7 @@ public class SwerveJoystickCmd extends Command {
       public final Supplier<Double> turningSpdFunction;
       public final Supplier<Boolean> fieldOrientedFunction;
       private final Supplier<Boolean> slowModeFunction;
-      public final Supplier<Boolean> targetOrientedFunction;
+      public final Supplier<Boolean> lockWheelsFunction;
       private final SlewRateLimiter xLimiter, yLimiter, turningLimiter; // slew rate limiter cap the the amount of change of a value
 
       private boolean isSlowMode;
@@ -44,7 +44,7 @@ public class SwerveJoystickCmd extends Command {
            Supplier<Double> turningSpdFunction,
            Supplier<Boolean> slowModeFunction,
           Supplier<Boolean> fieldOrientedFunction,
-          Supplier<Boolean> targetOrientedFunction) { // Supplier<Boolean> limeTargetAccessed//
+          Supplier<Boolean> lockWheelsFunction) { // Supplier<Boolean> limeTargetAccessed//
         
         this.swerveSubsystem = swerveSubsystem;
         this.xSpdFunction = xSpdFunction;
@@ -52,7 +52,7 @@ public class SwerveJoystickCmd extends Command {
         this.slowModeFunction = slowModeFunction;
         this.turningSpdFunction = turningSpdFunction;
         this.fieldOrientedFunction = fieldOrientedFunction;
-        this.targetOrientedFunction = targetOrientedFunction;
+        this.lockWheelsFunction = lockWheelsFunction;
 
 
         this.xLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
@@ -70,6 +70,10 @@ public class SwerveJoystickCmd extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(lockWheelsFunction.get())
+    {
+      return;
+    }
     // gett latest values from joystick
     //swerveSubsystem.orientToTarget();
     double xspeed = xSpdFunction.get();
@@ -108,7 +112,7 @@ public class SwerveJoystickCmd extends Command {
           xspeed, -yspeed, -turningSpeed, swerveSubsystem.getRotation2d());
 
 
-    SmartDashboard.putBoolean("targetOn", targetOrientedFunction.get());
+    SmartDashboard.putBoolean("targetOn", lockWheelsFunction.get());
     
     CurrentXSpeed = xspeed;
     CurrentYSpeed = yspeed;

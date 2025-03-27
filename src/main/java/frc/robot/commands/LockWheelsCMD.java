@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import com.revrobotics.RelativeEncoder;
 
 import com.revrobotics.spark.SparkMax;
@@ -10,12 +12,15 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.subsystems.SwerveSub;
 
 public class LockWheelsCMD extends Command{
     private final SwerveSub swerveSub; 
+
     private final SwerveModuleState[] desiredLockOnStates 
+    
     = new SwerveModuleState[]{
 
         new SwerveModuleState(0, new Rotation2d(-0.394* 2 * Math.PI)), // front right
@@ -31,8 +36,10 @@ public class LockWheelsCMD extends Command{
 
 
     
-    public LockWheelsCMD(SwerveSub swerveSub){
+    public LockWheelsCMD(
+        SwerveSub swerveSub){
         this.swerveSub = swerveSub;
+        addRequirements(swerveSub);
         
     }
 
