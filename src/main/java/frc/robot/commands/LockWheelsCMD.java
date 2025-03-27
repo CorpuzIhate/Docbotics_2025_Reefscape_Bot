@@ -18,17 +18,20 @@ import frc.robot.subsystems.SwerveSub;
 
 public class LockWheelsCMD extends Command{
     private final SwerveSub swerveSub; 
+    public final Supplier<Double> xSpdFunction;
+    public final Supplier<Double> ySpdFunction;
+    public final Supplier<Double> turningSpdFunction;
 
     private final SwerveModuleState[] desiredLockOnStates 
     
     = new SwerveModuleState[]{
 
-        new SwerveModuleState(0, new Rotation2d(-0.394* 2 * Math.PI)), // front right
-        new SwerveModuleState(0, new Rotation2d(0.489 * 2 * Math.PI)), // front left
+        new SwerveModuleState(0, new Rotation2d (- Math.PI/4 )), // front right
+        new SwerveModuleState(0, new Rotation2d( Math.PI /4)), // front left
 
-        new SwerveModuleState(0, new Rotation2d(0.25 * 2 * Math.PI)),// back right
+        new SwerveModuleState(0, new Rotation2d (Math.PI /4)),// back right
 
-        new SwerveModuleState(0, new Rotation2d(0.1246 * 2 * Math.PI)) // back left
+        new SwerveModuleState(0, new Rotation2d( -Math.PI /4)) // back left
 
     };
 
@@ -37,7 +40,14 @@ public class LockWheelsCMD extends Command{
 
     
     public LockWheelsCMD(
-        SwerveSub swerveSub){
+        SwerveSub swerveSub,
+        Supplier <Double> xSpdFunction,
+        Supplier<Double> ySpdFunction, 
+        Supplier<Double> turningSpdFunction){
+        this.xSpdFunction = xSpdFunction;
+        this.ySpdFunction = ySpdFunction;
+        this.turningSpdFunction = turningSpdFunction;
+
         this.swerveSub = swerveSub;
         addRequirements(swerveSub);
         
@@ -61,6 +71,18 @@ public class LockWheelsCMD extends Command{
     }
     @Override
     public boolean isFinished(){
+        double xspeed = xSpdFunction.get();
+        double yspeed = ySpdFunction.get();
+        double turningSpeed = turningSpdFunction.get();
+        
+        //now apply deband,  if joystick doesnt center back to exactly zero, it still stops
+        xspeed = Math.abs(xspeed) > OIConstants.kDeadband ? xspeed : 0.0;
+        yspeed = Math.abs(yspeed) > OIConstants.kDeadband ? yspeed : 0.0;
+        turningSpeed = Math.abs(turningSpeed) > OIConstants.kDeadband ? turningSpeed : 0.0;
+    
+        if( Math.abs(xspeed) > 0 || Math.abs(yspeed) > 0 || Math.abs(turningSpeed) > 0){
+          return true;
+        }
         return false;
     }
 }

@@ -44,7 +44,7 @@ public class SwerveJoystickCmd extends Command {
         new SwerveModuleState(0, new Rotation2d(-0.394* 2 * Math.PI)), // front right
         new SwerveModuleState(0, new Rotation2d(-0.489 * 2 * Math.PI)), // front left
         new SwerveModuleState(0, new Rotation2d(0.25 * 2 * Math.PI)),// back right
-        new SwerveModuleState(0, new Rotation2d(0.1246 * 2 * Math.PI)) // back left
+        new SwerveModuleState(0, new Rotation2d(-0.1246 * 2 * Math.PI)) // back left
 
     };
       
@@ -83,7 +83,6 @@ public class SwerveJoystickCmd extends Command {
   public void execute() {
     if(lockWheelsFunction.get())
     {
-      swerveSubsystem.setModuleStates(desiredLockOnStates, false);
 
       return;
     }

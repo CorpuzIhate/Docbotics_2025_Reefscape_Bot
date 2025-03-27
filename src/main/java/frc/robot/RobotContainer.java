@@ -68,26 +68,7 @@ public class RobotContainer {
   private final SendableChooser<Command> autoChooser;
   private final Joystick driverJoyStick = new Joystick(OIConstants.kDriverControllerPort);
 
-  private final Trigger isLockWheels = new Trigger(() -> {
-// // gett latest values from joystick
-//     double xspeed = driverJoyStick.getRawAxis(OIConstants.kDriverYAxis);
-//     double yspeed = driverJoyStick.getRawAxis(OIConstants.kDriverXAxis);
-//     double turningSpeed = driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis);
-    
-//     //now apply deband,  if joystick doesnt center back to exactly zero, it still stops
-//     xspeed = Math.abs(xspeed) > OIConstants.kDeadband ? xspeed : 0.0;
-//     yspeed = Math.abs(yspeed) > OIConstants.kDeadband ? yspeed : 0.0;
-//     turningSpeed = Math.abs(turningSpeed) > OIConstants.kDeadband ? turningSpeed : 0.0;
-//     if( Math.abs(xspeed) > 0 || Math.abs(yspeed) > 0 || Math.abs(turningSpeed) > 0){
-//       return false;
-//     }
-    if(driverJoyStick.getRawButton(OIConstants.kLockWheelsButton)){
-      return true;
-    }
-    return false;
-    
-  });
-  
+
 
   public RobotContainer() {
 
@@ -251,7 +232,11 @@ public class RobotContainer {
     Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
     /**dismount Algea when up on the d-pad is pressed. */
-
+    new JoystickButton(driverJoyStick, OIConstants.kLockWheelsButton).onTrue(new LockWheelsCMD(
+      swerveSub,
+      () -> driverJoyStick.getRawAxis(OIConstants.kDriverXAxis),
+      () -> driverJoyStick.getRawAxis(OIConstants.kDriverYAxis),
+      () -> driverJoyStick.getRawAxis(OIConstants.kDriverRotAxis)));
 
     isDpadUpPressed.onTrue(dismountAlgeaL3CMD);
 
