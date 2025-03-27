@@ -5,7 +5,9 @@
 package frc.robot;
 
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.ElevatorConstants.elevatorSetpoint;
 import frc.robot.Constants.IntakeConstants.DismountConstants;
+import frc.robot.Constants.IntakeConstants.IntakePitchSetPoints_degrees;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
@@ -100,7 +102,7 @@ public class RobotContainer {
              /// By default will be on field oriented.
             () -> !
             driverJoyStick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx), 
-            () -> isLockWheels.getAsBoolean())); 
+            () -> driverJoyStick.getRawButton(OIConstants.kLockWheelsButton))); 
     limelightSub.setDefaultCommand(
         new ManageLimeLightCMD(limelightSub));
 
@@ -149,20 +151,28 @@ public class RobotContainer {
 
     Command consumerCoralAtCoralStation = new ParallelCommandGroup(
       new InstantCommand(() -> 
-      {elevatorSub.setIntakeHeightSetPoint_Inches(30.8); 
-      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(144);}));
+      {elevatorSub.setIntakeHeightSetPoint_Inches(elevatorSetpoint.coralStationSetpoint_inches); 
+      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(IntakePitchSetPoints_degrees.coralStation_degrees);}));
       NamedCommands.registerCommand("consumeCoralAtCoralStation", consumerCoralAtCoralStation); 
 
+      Command scoreL1Reef  = new ParallelCommandGroup(
+        new InstantCommand(() -> 
+        {elevatorSub.setIntakeHeightSetPoint_Inches(elevatorSetpoint.reefLevel1Setpoint_inches);
+        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(IntakePitchSetPoints_degrees.L1Pitch_degrees);})); 
+      Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
+
+      isDpadRightPressed.onTrue(scoreL1Reef);
+      
     Command scoreL2Reef = new ParallelCommandGroup(
       new InstantCommand(() -> 
-      {elevatorSub.setIntakeHeightSetPoint_Inches(41);
-      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(91);}));
+      {elevatorSub.setIntakeHeightSetPoint_Inches(elevatorSetpoint.reefLevel2Setpoint_inches);
+      coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(IntakePitchSetPoints_degrees.L2Pitch_degrees);}));
       NamedCommands.registerCommand("scoreL2Reef", scoreL2Reef);
 
     Command scoreL3Reef = new ParallelCommandGroup(
         new InstantCommand(() -> 
-        {elevatorSub.setIntakeHeightSetPoint_Inches(84);
-        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(115);})); 
+        {elevatorSub.setIntakeHeightSetPoint_Inches(elevatorSetpoint.reefLevel3Setpoint_inches);
+        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(IntakePitchSetPoints_degrees.L3Pitch_degrees);})); 
         NamedCommands.registerCommand("scoreL3Reef", scoreL3Reef);
 
     Command setIntakePositionToDefault = new ParallelCommandGroup(
@@ -170,10 +180,7 @@ public class RobotContainer {
       {elevatorSub.setIntakeHeightSetPoint_Inches(0);
       coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(60);}));  
 
-      Command scoreL1Reef  = new ParallelCommandGroup(
-        new InstantCommand(() -> 
-        {elevatorSub.setIntakeHeightSetPoint_Inches(0);
-        coralPitcherIntakeSub.setIntakePitchSetpoint_degrees(100);}));  
+
 
       NamedCommands.registerCommand("setIntakePositionToDefault", setIntakePositionToDefault);
       NamedCommands.registerCommand("intake", new autoPowerCoralIntakeCMD(coralIntakeConsumerSub, -0.3).withTimeout(3));
@@ -241,7 +248,6 @@ public class RobotContainer {
 
     /*checks whether up on the d-pad is pressed. */
     Trigger isDpadUpPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 0;});
-    Trigger isDpadRightPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 90;});
     Trigger isDpadLeftPressed = new Trigger(() -> {return driverJoyStick.getPOV() == 270;});
 
     /**dismount Algea when up on the d-pad is pressed. */
@@ -251,7 +257,7 @@ public class RobotContainer {
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
-    isLockWheels.whileTrue(new LockWheelsCMD(swerveSub));
+    new JoystickButton(driverJoyStick, OIConstants.kLockWheelsButton).whileTrue(new LockWheelsCMD(swerveSub));
 
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     

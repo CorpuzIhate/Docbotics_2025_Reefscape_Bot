@@ -22,7 +22,7 @@ public class CoralPitcherIntakeSub extends SubsystemBase {
             IntakeConstants.intakePitcher_kI,
             IntakeConstants.intakePitcher_kD);
     /**angular set point of the pitcher in degrees. */
-    private double pitcherSetpoint_degrees = 0;
+    private double pitcherSetpoint_degrees = 25;
     public CoralPitcherIntakeSub(){
         intakePitchController.enableContinuousInput(0, 360);
 
