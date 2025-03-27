@@ -51,7 +51,7 @@ public class LockWheelsCMD extends Command{
     
     @Override
     public void execute(){
-        swerveSub.setModuleStates(desiredLockOnStates);
+        swerveSub.setModuleStates(desiredLockOnStates, false);
     }
 
     @Override

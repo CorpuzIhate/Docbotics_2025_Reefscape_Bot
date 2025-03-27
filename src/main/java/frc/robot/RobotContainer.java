@@ -257,7 +257,6 @@ public class RobotContainer {
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
-    new JoystickButton(driverJoyStick, OIConstants.kLockWheelsButton).whileTrue(new LockWheelsCMD(swerveSub));
 
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     

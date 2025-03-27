@@ -205,19 +205,19 @@ public class SwerveSub extends SubsystemBase {
         ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
 
         SwerveModuleState[] targetStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(targetSpeeds);
-        setModuleStates(targetStates);
+        setModuleStates(targetStates, true);
     }
 
 
 
 
-    public void setModuleStates(SwerveModuleState[] desiredStates){
+    public void setModuleStates(SwerveModuleState[] desiredStates, boolean isDeadband){
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, DriveConstants.kPhysicalMaxSpeedMetersPerSecond);
     // proportaionally decreases the change the speeds so driver always had control of robot
-        frontRight.setDesiredState(desiredStates[0]);        
-        frontLeft.setDesiredState(desiredStates[1]); //1 
-        backRight.setDesiredState(desiredStates[2]); //2                     
-        backLeft.setDesiredState(desiredStates[3]); // 3
+        frontRight.setDesiredState(desiredStates[0], isDeadband);        
+        frontLeft.setDesiredState(desiredStates[1] , isDeadband); //1 
+        backRight.setDesiredState(desiredStates[2], isDeadband); //2                     
+        backLeft.setDesiredState(desiredStates[3],isDeadband); // 3
 
 
 

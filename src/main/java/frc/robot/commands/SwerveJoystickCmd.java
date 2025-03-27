@@ -7,6 +7,7 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,6 +37,16 @@ public class SwerveJoystickCmd extends Command {
       public static double CurrentYSpeed;
       public static double CurrentTurningSpeed;
       public static boolean CurrentOrientation;
+      private final SwerveModuleState[] desiredLockOnStates 
+
+    = new SwerveModuleState[]{
+
+        new SwerveModuleState(0, new Rotation2d(-0.394* 2 * Math.PI)), // front right
+        new SwerveModuleState(0, new Rotation2d(-0.489 * 2 * Math.PI)), // front left
+        new SwerveModuleState(0, new Rotation2d(0.25 * 2 * Math.PI)),// back right
+        new SwerveModuleState(0, new Rotation2d(0.1246 * 2 * Math.PI)) // back left
+
+    };
       
   public SwerveJoystickCmd(
           SwerveSub swerveSubsystem, 
@@ -72,6 +83,8 @@ public class SwerveJoystickCmd extends Command {
   public void execute() {
     if(lockWheelsFunction.get())
     {
+      swerveSubsystem.setModuleStates(desiredLockOnStates, false);
+
       return;
     }
     // gett latest values from joystick
@@ -126,7 +139,7 @@ public class SwerveJoystickCmd extends Command {
     // set state to each wheel
 
 
-    swerveSubsystem.setModuleStates(moduleStates);
+    swerveSubsystem.setModuleStates(moduleStates, true);
 
   }
 

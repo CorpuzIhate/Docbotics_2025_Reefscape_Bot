@@ -129,8 +129,8 @@ public class SwerveModule {
         return new SwerveModulePosition(getDrivePostion(), new Rotation2d(getTurningPositon()));
     }
 
-    public void setDesiredState(SwerveModuleState state){
-        if(Math.abs(state.speedMetersPerSecond) < 0.001) // were not really moving do not reset the motors
+    public void setDesiredState(SwerveModuleState state, boolean isDeadband){
+        if(Math.abs(state.speedMetersPerSecond) < 0.001 && isDeadband) // were not really moving do not reset the motors
         {
             stop();
             return;
@@ -144,6 +144,7 @@ public class SwerveModule {
 
 
     }
+
     public void stop(){
         driveMotor.set(0);
         turningMotor.set(0);
