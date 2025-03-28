@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.29576198630137,
-        "y": 7.608625856164384
+        "x": 6.02997159090909,
+        "y": 3.955198863636363
       },
       "isLocked": false,
       "linkedName": "Center"
     },
     {
       "anchor": {
-        "x": 5.195198863636364,
-        "y": 4.932414772727272
+        "x": 5.472799295774647,
+        "y": 3.955198863636363
       },
       "prevControl": {
-        "x": 5.73038644146949,
-        "y": 6.657909791407223
+        "x": 6.472799295774647,
+        "y": 3.955198863636363
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Dismount_GH"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Pos",
-      "waypointRelativePos": 0.3251775848460924,
+      "name": "",
+      "waypointRelativePos": 0.8450106157112526,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "scoreL2Reef"
+          "name": "autoDismountAlgeaL2CMD"
         }
       }
     }
@@ -54,12 +54,12 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.99999999999999
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Center",
+  "folder": "Dismount",
   "idealStartingState": {
-    "velocity": 0.0,
+    "velocity": 0,
     "rotation": 180.0
   },
   "useDefaultConstraints": true

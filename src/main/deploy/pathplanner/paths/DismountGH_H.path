@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.029971590909091,
+        "x": 5.472799295774647,
         "y": 3.955198863636363
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.29576198630137,
-        "y": 7.608625856164384
+        "x": 6.790845808006741,
+        "y": 3.8407655374529845
       },
       "isLocked": false,
-      "linkedName": "Center"
+      "linkedName": "Dismount_GH"
     },
     {
       "anchor": {
-        "x": 5.195198863636364,
-        "y": 4.932414772727272
+        "x": 5.472799295774647,
+        "y": 4.280105633802816
       },
       "prevControl": {
-        "x": 5.73038644146949,
-        "y": 6.657909791407223
+        "x": 7.116813380281688,
+        "y": 4.634419014084505
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,15 +33,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Pos",
-      "waypointRelativePos": 0.3251775848460924,
+      "name": "autoDismountDefaultCMD",
+      "waypointRelativePos": 0.1464968152866242,
       "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "scoreL2Reef"
-        }
-      }
+      "command": null
     }
   ],
   "globalConstraints": {
@@ -54,10 +49,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.99999999999999
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Center",
+  "folder": "Branch",
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": 180.0
