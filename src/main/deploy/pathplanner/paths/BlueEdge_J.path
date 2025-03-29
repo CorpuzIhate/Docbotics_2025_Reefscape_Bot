@@ -3,31 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.292208904109589,
-        "y": 7.05267551369863
+        "x": 7.244366197183099,
+        "y": 7.610651408450704
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.092227714224389,
-        "y": 8.237003294492922
+        "x": 7.167251712328767,
+        "y": 6.151134417808219
       },
       "isLocked": false,
-      "linkedName": "coralStation"
+      "linkedName": "BlueEdge"
     },
     {
       "anchor": {
-        "x": 3.200880681818182,
-        "y": 3.775710227272727
+        "x": 4.8683219178082195,
+        "y": 5.069285102739726
       },
       "prevControl": {
-        "x": 1.1965909090909115,
-        "y": 3.7856818181818177
-        "x": 1.4059943181818206,
-        "y": 4.0249999999999995
+        "x": 4.102011986301371,
+        "y": 4.693642979452055
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Reef_B"
+      "linkedName": "Reef_J"
     }
   ],
   "rotationTargets": [],
@@ -36,19 +34,14 @@
   "eventMarkers": [
     {
       "name": "scoreL2Reef",
-      "waypointRelativePos": 0.5241844769403776,
+      "waypointRelativePos": 0.3952380952380947,
       "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "scoreL2Reef"
-        }
-      }
+      "command": null
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 4.2,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -56,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -117.89727103094764
   },
   "reversed": false,
-  "folder": "StartCoralStation",
+  "folder": "BlueEdge",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 126.86989764584402
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

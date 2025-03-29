@@ -3,32 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.2165340909090911,
-        "y": 0.8241193181818176
+        "x": 1.292208904109589,
+        "y": 7.05267551369863
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.371590909090909,
-        "y": 2.144633838383838
+        "x": 2.0284674657534247,
+        "y": 7.608625856164384
       },
       "isLocked": false,
       "linkedName": "coralStation"
-    },
-    {
-      "anchor": {
-        "x": 2.3614267676767677,
-        "y": 2.59185606060606
-      },
-      "prevControl": {
-        "x": 2.1581439393939394,
-        "y": 2.1751262626262626
-      },
-      "nextControl": {
-        "x": 2.57718826155829,
-        "y": 3.034167123063181
-      },
-      "isLocked": false,
-      "linkedName": null
     },
     {
       "anchor": {
@@ -36,8 +20,8 @@
         "y": 4.207954545454545
       },
       "prevControl": {
-        "x": 1.8023989898989898,
-        "y": 4.2994318181818185
+        "x": 1.2621575342465752,
+        "y": 4.122666952054796
       },
       "nextControl": null,
       "isLocked": false,
@@ -50,7 +34,7 @@
   "eventMarkers": [
     {
       "name": "",
-      "waypointRelativePos": 0.6423034330011044,
+      "waypointRelativePos": 0.3,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -63,6 +47,8 @@
   "globalConstraints": {
     "maxVelocity": 3.5,
     "maxAcceleration": 1.5,
+    "maxVelocity": 4.2,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -76,7 +62,7 @@
   "folder": "StartCoralStation",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -126.22301257549856
+    "rotation": 126.86989764584402
   },
   "useDefaultConstraints": true
 }

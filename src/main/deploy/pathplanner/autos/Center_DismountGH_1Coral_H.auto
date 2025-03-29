@@ -1,0 +1,31 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Center_DismountGH"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "DismountGH_H"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "scoreL3Reef"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Dismount",
+  "choreoAuto": false
+}

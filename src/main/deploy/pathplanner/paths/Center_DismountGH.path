@@ -3,31 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.292208904109589,
-        "y": 7.05267551369863
+        "x": 7.029971590909091,
+        "y": 3.955198863636363
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.092227714224389,
-        "y": 8.237003294492922
+        "x": 6.02997159090909,
+        "y": 3.955198863636363
       },
       "isLocked": false,
-      "linkedName": "coralStation"
+      "linkedName": "Center"
     },
     {
       "anchor": {
-        "x": 3.200880681818182,
-        "y": 3.775710227272727
+        "x": 5.472799295774647,
+        "y": 3.955198863636363
       },
       "prevControl": {
-        "x": 1.1965909090909115,
-        "y": 3.7856818181818177
-        "x": 1.4059943181818206,
-        "y": 4.0249999999999995
+        "x": 6.472799295774647,
+        "y": 3.955198863636363
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Reef_B"
+      "linkedName": "Dismount_GH"
     }
   ],
   "rotationTargets": [],
@@ -35,20 +33,20 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Reef",
-      "waypointRelativePos": 0.5241844769403776,
+      "name": "",
+      "waypointRelativePos": 0.8450106157112526,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "scoreL2Reef"
+          "name": "autoDismountAlgeaL2CMD"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 4.2,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -56,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "StartCoralStation",
+  "folder": "Dismount",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 126.86989764584402
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

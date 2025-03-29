@@ -3,31 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.292208904109589,
-        "y": 7.05267551369863
+        "x": 4.8683219178082195,
+        "y": 5.069285102739726
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.092227714224389,
-        "y": 8.237003294492922
+        "x": 6.25068493150685,
+        "y": 6.00087756849315
       },
       "isLocked": false,
-      "linkedName": "coralStation"
+      "linkedName": "Reef_J"
     },
     {
       "anchor": {
-        "x": 3.200880681818182,
-        "y": 3.775710227272727
+        "x": 1.292208904109589,
+        "y": 7.05267551369863
       },
       "prevControl": {
-        "x": 1.1965909090909115,
-        "y": 3.7856818181818177
-        "x": 1.4059943181818206,
-        "y": 4.0249999999999995
+        "x": 1.4124143835614968,
+        "y": 6.571853595882962
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Reef_B"
+      "linkedName": "coralStation"
     }
   ],
   "rotationTargets": [],
@@ -35,20 +33,15 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "scoreL2Reef",
-      "waypointRelativePos": 0.5241844769403776,
+      "name": "consumeCoralAtCoralStation",
+      "waypointRelativePos": 0.4023809523809519,
       "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "scoreL2Reef"
-        }
-      }
+      "command": null
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 4.2,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -56,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 126.86989764584402
   },
   "reversed": false,
-  "folder": "StartCoralStation",
+  "folder": "Branch",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 126.86989764584402
+    "rotation": -117.89727103094764
   },
   "useDefaultConstraints": true
 }
