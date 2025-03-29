@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.977215909090909,
-        "y": 1.1631534090909088
+        "x": 0.8714897260273973,
+        "y": 0.8921446917808215
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.977215909090909,
-        "y": 1.1631534090909086
+        "x": 1.8714897260273973,
+        "y": 0.8921446917808211
       },
       "isLocked": false,
       "linkedName": "rightCoralStation"
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.2,
+    "maxVelocity": 3.5,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
