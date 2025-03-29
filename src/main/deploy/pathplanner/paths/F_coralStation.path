@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.231058020477815,
-        "y": 3.1365187713310574
+        "x": 5.205170454545455,
+        "y": 3.04778409090909
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.7977986348122865,
-        "y": 1.6880289132795538
+        "x": 4.771911068879927,
+        "y": 1.5992942328575865
       },
       "isLocked": false,
       "linkedName": "Reef_F"
@@ -61,7 +61,7 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.2,
+    "maxVelocity": 3.5,
     "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,

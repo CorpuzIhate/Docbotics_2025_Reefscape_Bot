@@ -14,7 +14,7 @@
     "BlueEdge",
     "Processor"
   ],
-  "defaultMaxVel": 4.2,
+  "defaultMaxVel": 3.5,
   "defaultMaxAccel": 1.5,
   "defaultMaxAngVel": 540.0,
   "defaultMaxAngAccel": 720.0,
