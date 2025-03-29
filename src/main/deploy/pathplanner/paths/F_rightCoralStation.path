@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.205170454545455,
-        "y": 3.04778409090909
+        "x": 5.298863636363636,
+        "y": 3.0594065656565657
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.771911068879927,
-        "y": 1.5992942328575865
+        "x": 6.405710227272727,
+        "y": 2.241736111111111
       },
       "isLocked": false,
       "linkedName": "Reef_F"
@@ -20,24 +20,24 @@
         "y": 1.6889931740614328
       },
       "prevControl": {
-        "x": 4.1770869531492405,
-        "y": 1.7657823650325795
+        "x": 3.974486741727424,
+        "y": 1.1977710235953456
       },
       "nextControl": {
-        "x": 2.0247834227189325,
-        "y": 1.5462780168513721
+        "x": 2.5037247474747475,
+        "y": 2.5105429292929298
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.8714897260273973,
-        "y": 0.8921446917808215
+        "x": 1.141729797979798,
+        "y": 0.9046085858585866
       },
       "prevControl": {
-        "x": 1.461866897916941,
-        "y": 1.5373939742815983
+        "x": 1.7321069698693417,
+        "y": 1.5498578683593636
       },
       "nextControl": null,
       "isLocked": false,
@@ -61,10 +61,10 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 3.0,
-    "maxAngularVelocity": 540.0,
-    "maxAngularAcceleration": 720.0,
+    "maxVelocity": 2.1,
+    "maxAcceleration": 2.5,
+    "maxAngularVelocity": 270.0,
+    "maxAngularAcceleration": 500.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
