@@ -3,45 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.205170454545455,
-        "y": 3.04778409090909
+        "x": 3.337184343434343,
+        "y": 4.207954545454545
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.771911068879927,
-        "y": 1.5992942328575865
+        "x": 2.899957191780822,
+        "y": 2.815432363013698
       },
       "isLocked": false,
-      "linkedName": "Reef_F"
+      "linkedName": "Reef_A"
     },
     {
       "anchor": {
-        "x": 3.4241467576791806,
-        "y": 1.6889931740614328
+        "x": 0.8714897260273973,
+        "y": 0.8921446917808215
       },
       "prevControl": {
-        "x": 4.1770869531492405,
-        "y": 1.7657823650325795
-      },
-      "nextControl": {
-        "x": 2.0247834227189325,
-        "y": 1.5462780168513721
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 1.292208904109589,
-        "y": 7.05267551369863
-      },
-      "prevControl": {
-        "x": 1.8825860759991326,
-        "y": 7.697924796199407
+        "x": 1.3673373287671233,
+        "y": 1.2828125
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "coralStation"
+      "linkedName": "rightCoralStation"
     }
   ],
   "rotationTargets": [],
@@ -49,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "consumeCoralAtCoralStation",
-      "waypointRelativePos": 0.736486486486485,
+      "name": "",
+      "waypointRelativePos": 0.41666666666666624,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -61,8 +45,6 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 1.5,
     "maxVelocity": 4.2,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
@@ -72,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.86989764584402
+    "rotation": -127.09283729704157
   },
   "reversed": false,
   "folder": "Branch",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 120.9086494751306
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

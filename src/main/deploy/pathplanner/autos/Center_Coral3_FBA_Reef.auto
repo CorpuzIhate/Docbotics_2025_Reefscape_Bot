@@ -19,7 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "F_coralStation"
+            "pathName": "F_rightCoralStation"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CoralStation_A"
+            "pathName": "rightCoralStation_A"
           }
         },
         {

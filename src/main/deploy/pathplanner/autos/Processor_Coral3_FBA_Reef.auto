@@ -19,7 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "F_coralStation"
+            "pathName": "F_rightCoralStation"
           }
         },
         {
@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CoralSation_B"
+            "pathName": "rightCoralStation_A"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "B_CoralSation"
+            "pathName": "A_rightCoralStation"
           }
         },
         {
@@ -55,13 +55,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CoralStation_A"
+            "pathName": "rightCoralStation_A"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "outtake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "resetSwerveModuleSpeedsCMD"
           }
         }
       ]
