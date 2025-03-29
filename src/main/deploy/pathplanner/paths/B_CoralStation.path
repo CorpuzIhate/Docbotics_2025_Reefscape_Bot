@@ -3,15 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.200880681818182,
-        "y": 3.775710227272727
+        "x": 3.410284090909091,
+        "y": 4.015028409090909
       },
       "prevControl": null,
       "nextControl": {
         "x": 2.043493150684931,
         "y": 5.655286815068493
-        "x": 4.20088068181818,
-        "y": 3.775710227272727
       },
       "isLocked": false,
       "linkedName": "Reef_B"
@@ -41,7 +39,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 4.2,
-    "maxAcceleration": 1.5,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -50,6 +48,81 @@
   "goalEndState": {
     "velocity": 0,
     "rotation": 126.86989764584402
+  },
+  "reversed": false,
+  "folder": "Branch",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 3.200880681818182,
+        "y": 3.775710227272727
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 4.20088068181818,
+        "y": 3.775710227272727
+      },
+      "isLocked": false,
+      "linkedName": "Reef_B"
+    },
+    {
+      "anchor": {
+        "x": 1.884630681818182,
+        "y": 3.1873863636363633
+      },
+      "prevControl": {
+        "x": 2.5349683990538345,
+        "y": 4.289347495618998
+      },
+      "nextControl": {
+        "x": 1.525653409090909,
+        "y": 2.5791193181818177
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.2165340909090911,
+        "y": 0.8241193181818176
+      },
+      "prevControl": {
+        "x": 2.004289772727273,
+        "y": 1.9808238636363626
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "coralStation"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 2,
+      "rotationDegrees": 0.0
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.5,
+    "maxAcceleration": 1.5,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -126.22301257549856
   },
   "reversed": false,
   "folder": "Branch",
