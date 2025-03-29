@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.200880681818182,
-        "y": 3.775710227272727
+        "x": 5.472799295774647,
+        "y": 3.955198863636363
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.3083996212121212,
-        "y": 3.480757575757576
+        "x": 6.790845808006741,
+        "y": 3.8407655374529845
       },
       "isLocked": false,
-      "linkedName": "Reef_B"
+      "linkedName": "Dismount_GH"
     },
     {
       "anchor": {
-        "x": 1.292208904109589,
-        "y": 7.05267551369863
+        "x": 5.472799295774647,
+        "y": 4.280105633802816
       },
       "prevControl": {
-        "x": 1.8475813788570634,
-        "y": 7.743013266223883
+        "x": 7.116813380281688,
+        "y": 4.634419014084505
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "coralStation"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -33,20 +33,15 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "",
-      "waypointRelativePos": 0.5,
+      "name": "autoDismountDefaultCMD",
+      "waypointRelativePos": 0.1464968152866242,
       "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "consumeCoralAtCoralStation"
-        }
-      }
+      "command": null
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 4.2,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -54,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.86989764584402
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Branch",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 0.0
+    "velocity": 0.0,
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

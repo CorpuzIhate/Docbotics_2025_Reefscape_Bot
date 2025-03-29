@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.029971590909091,
-        "y": 3.955198863636363
+        "x": 7.244366197183099,
+        "y": 7.610651408450704
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.5962756849315065,
-        "y": 3.5366652397260276
+        "x": 6.810670291205514,
+        "y": 7.192117784540368
       },
       "isLocked": false,
-      "linkedName": "Center"
+      "linkedName": "BlueEdge"
     },
     {
       "anchor": {
-        "x": 5.231058020477815,
-        "y": 3.1365187713310574
+        "x": 5.205170454545455,
+        "y": 3.04778409090909
       },
       "prevControl": {
-        "x": 6.151994365207842,
-        "y": 1.5414102317218839
+        "x": 6.126106799275482,
+        "y": 1.4526755512999165
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,8 +33,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.2,
+    "maxVelocity": 3.5,
     "maxAcceleration": 1.5,
+    "maxVelocity": 4.2,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
