@@ -11,14 +11,12 @@
     "StartCoralStation"
   ],
   "autoFolders": [
-    "BlueEdge",
+    "NonProcessor",
     "Center",
     "Dismount",
     "Processor"
   ],
   "defaultMaxVel": 3.5,
-  "defaultMaxAccel": 1.5,
-  "defaultMaxVel": 4.2,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,
   "defaultMaxAngAccel": 720.0,

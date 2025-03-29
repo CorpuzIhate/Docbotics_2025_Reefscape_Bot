@@ -9,7 +9,7 @@
       "prevControl": null,
       "nextControl": {
         "x": 1.6077482876712321,
-        "y": 1.448095034246576
+        "y": 1.4480950342465762
       },
       "isLocked": false,
       "linkedName": "rightCoralStation"
@@ -50,7 +50,7 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.2,
+    "maxVelocity": 3.5,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,

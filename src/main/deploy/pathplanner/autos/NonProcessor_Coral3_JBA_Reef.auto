@@ -19,7 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "J_CoralStation"
+            "pathName": "J_LeftCoralStation"
           }
         },
         {
@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "rightCoralStation_A"
+            "pathName": "leftCoralStation_A"
           }
         },
         {
@@ -68,6 +68,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Processor",
+  "folder": "NonProcessor",
   "choreoAuto": false
 }
