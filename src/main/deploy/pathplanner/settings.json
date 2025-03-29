@@ -16,9 +16,9 @@
     "Dismount",
     "Processor"
   ],
-  "defaultMaxVel": 3.5,
+  "defaultMaxVel": 2.7,
   "defaultMaxAccel": 3.0,
-  "defaultMaxAngVel": 540.0,
+  "defaultMaxAngVel": 270.0,
   "defaultMaxAngAccel": 720.0,
   "defaultNominalVoltage": 12.0,
   "robotMass": 45.0,
