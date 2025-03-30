@@ -16,7 +16,7 @@
     "Dismount",
     "Processor"
   ],
-  "defaultMaxVel": 2.1,
+  "defaultMaxVel": 1.9,
   "defaultMaxAccel": 2.5,
   "defaultMaxAngVel": 270.0,
   "defaultMaxAngAccel": 500.0,
