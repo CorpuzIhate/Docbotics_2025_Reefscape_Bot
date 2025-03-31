@@ -4,41 +4,34 @@
     {
       "anchor": {
         "x": 5.75,
-        "y": 3.955198863636363
+        "y": 4.161499999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.068046512232094,
-        "y": 3.8407655374529845
+        "x": 8.940750000000001,
+        "y": 4.38575
       },
       "isLocked": false,
-      "linkedName": "Dismount_GH"
+      "linkedName": "Reef_H"
     },
     {
       "anchor": {
-        "x": 5.75,
-        "y": 4.28
+        "x": 4.45575,
+        "y": 0.5929999999999995
       },
       "prevControl": {
-        "x": 7.394014084507042,
-        "y": 4.634313380281689
+        "x": 6.3375,
+        "y": 0.3784999999999991
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightSide"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "autoDismountDefaultCMD",
-      "waypointRelativePos": 0.1464968152866242,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 1.9,
     "maxAcceleration": 2.5,
@@ -54,7 +47,7 @@
   "reversed": false,
   "folder": "Branch",
   "idealStartingState": {
-    "velocity": 0.0,
+    "velocity": 0,
     "rotation": 180.0
   },
   "useDefaultConstraints": true
