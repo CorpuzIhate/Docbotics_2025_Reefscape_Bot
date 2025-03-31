@@ -21,6 +21,12 @@
           "data": {
             "name": "scoreL3Reef"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "resetSwerveModuleSpeedsCMD"
+          }
         }
       ]
     }
