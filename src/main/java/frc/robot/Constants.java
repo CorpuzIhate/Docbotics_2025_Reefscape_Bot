@@ -231,9 +231,9 @@ public final class Constants {
       public static final double dismount_kD = 0.0000525;
       public static final double maxDismountPower =0.5;
 
-      public static final double dismountAlegeSetpointL2_degrees = 37;
+      public static final double dismountAlegeSetpointL2_degrees = 53; //old: 37; 47
 
-      public static final double dismountAlegeSetpointL3_degrees = 75;
+      public static final double dismountAlegeSetpointL3_degrees = 85; // old: 75
     }
       
   }
