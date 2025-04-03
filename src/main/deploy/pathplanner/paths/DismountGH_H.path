@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 5.75,
-        "y": 3.955198863636363
+        "y": 3.655
       },
       "prevControl": null,
       "nextControl": {
         "x": 7.068046512232094,
-        "y": 3.8407655374529845
+        "y": 3.5405666738166213
       },
       "isLocked": false,
       "linkedName": "Dismount_GH"
