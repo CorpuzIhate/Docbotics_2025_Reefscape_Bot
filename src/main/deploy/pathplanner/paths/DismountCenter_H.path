@@ -31,7 +31,30 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "",
+      "waypointRelativePos": 0.28346456692912236,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "scoreL3Reef"
+        }
+      }
+    },
+    {
+      "name": "",
+      "waypointRelativePos": 0.299212598425186,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "autoDismountDefaultCMD"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 1.9,
     "maxAcceleration": 2.5,
