@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.3048863636363635,
-        "y": 3.087670454545454
+        "x": 5.319191919191919,
+        "y": 3.140719696969697
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.411732954545454,
-        "y": 2.269999999999999
+        "x": 6.42603851010101,
+        "y": 2.323049242424242
       },
       "isLocked": false,
       "linkedName": "Reef_F"
@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 1.141729797979798,
-        "y": 0.9046085858585866
+        "x": 1.0470170454545455,
+        "y": 0.8640056818181825
       },
       "prevControl": {
-        "x": 1.7321069698693417,
-        "y": 1.5498578683593636
+        "x": 1.6373942173440892,
+        "y": 1.5092549643189594
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,9 +62,9 @@
   ],
   "globalConstraints": {
     "maxVelocity": 1.9,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 2.0,
     "maxAngularVelocity": 270.0,
-    "maxAngularAcceleration": 500.0,
+    "maxAngularAcceleration": 360.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -76,7 +76,7 @@
   "folder": "Branch",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 120.9086494751306
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true
 }

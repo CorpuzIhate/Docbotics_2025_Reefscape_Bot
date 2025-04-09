@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.75,
-        "y": 3.655
+        "x": 5.766414141414142,
+        "y": 3.8013888888888885
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.068046512232094,
-        "y": 3.5405666738166213
+        "x": 7.084460653646236,
+        "y": 3.68695556270551
       },
       "isLocked": false,
       "linkedName": "Dismount_GH"
@@ -41,9 +41,9 @@
   ],
   "globalConstraints": {
     "maxVelocity": 1.9,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 2.0,
     "maxAngularVelocity": 270.0,
-    "maxAngularAcceleration": 500.0,
+    "maxAngularAcceleration": 360.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },

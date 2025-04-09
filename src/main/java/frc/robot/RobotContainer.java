@@ -195,7 +195,7 @@ public class RobotContainer {
           dismountSpinSub.getDismountSpinMotor().set(0.6);}),
         new InstantCommand(() -> {
           dismountSub.setSetpoint(10);
-          dismountSpinSub.getDismountSpinMotor().set(0);}), 
+          dismountSpinSub.getDismountSpinMotor().set(0);}),
         ()-> { return dismountSub.getIsHoldPosition();})
     );
 

@@ -17,9 +17,9 @@
     "Processor"
   ],
   "defaultMaxVel": 1.9,
-  "defaultMaxAccel": 2.5,
+  "defaultMaxAccel": 2.0,
   "defaultMaxAngVel": 270.0,
-  "defaultMaxAngAccel": 500.0,
+  "defaultMaxAngAccel": 360.0,
   "defaultNominalVoltage": 12.0,
   "robotMass": 45.0,
   "robotMOI": 6.883,
