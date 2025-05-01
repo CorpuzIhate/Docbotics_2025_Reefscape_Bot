@@ -117,7 +117,8 @@ public final class Constants {
                 // **Button that powers coral intake. */
                 public static final int kOutakeCoralIdx = 6;
     // *Button that moves intake to default height and angle. */
-    public static final int kMoveIntakeToDefaultPosIdx = 1;
+    //TEMPORARY should be 1
+    public static final int kMoveIntakeToDefaultPosIdx = 9;
 
         /**
      * Button ID to move the intake to the angle and height for
@@ -244,9 +245,17 @@ public final class Constants {
         DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 10;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
     public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
-    public static final double kPXController = 1.5;
-    public static final double kPYController = 1.5;
-    public static final double kPThetaController = 3;
+
+    public static final double kPXController = 0.3;
+    public static final double kPYController = 0.5;
+    public static final double kPThetaController = 0.1;
+
+    public static double kIXController = 0;
+    public static double kIYController = 0;
+    public static double kIThetaController = 0;
+    public static double kDXController = 0;
+    public static double kDYController = 0;
+    public static double kDThetaController = 0;
 
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
         new TrapezoidProfile.Constraints(

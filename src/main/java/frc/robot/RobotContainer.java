@@ -11,6 +11,7 @@ import frc.robot.Constants.IntakeConstants.IntakePitchSetPoints_degrees;
 import frc.robot.autoCommands.EncoderMoveRobotXY;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
+import frc.robot.commands.AlignToReefTagCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
 import frc.robot.commands.IdleIntakeHeightCMD;
 import frc.robot.commands.IdlePitchIntakeAngleCMD;
@@ -94,6 +95,7 @@ public class RobotContainer {
     );
 
     
+    
     /**
      * By default the the elevator will be in Idle state
      * where it just tries to maintain the intake height set point.
@@ -123,7 +125,10 @@ public class RobotContainer {
     // MoveArmCMD(armsub));
 
 
-  
+      new JoystickButton(driverJoyStick, 1).whileTrue(
+        new AlignToReefTagCMD(swerveSub )
+      
+    );
 
     /**Command to reset intake elevator motors */
     Command resetEncodersCommand = new RunCommand(() -> {
@@ -257,6 +262,7 @@ public class RobotContainer {
  
 
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
+
     
   }
 
