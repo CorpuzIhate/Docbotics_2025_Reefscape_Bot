@@ -8,6 +8,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ElevatorConstants.elevatorSetpoint;
 import frc.robot.Constants.IntakeConstants.DismountConstants;
 import frc.robot.Constants.IntakeConstants.IntakePitchSetPoints_degrees;
+import frc.robot.autoCommands.EncoderMoveRobotXY;
 import frc.robot.autoCommands.autoPowerCoralIntakeCMD;
 import frc.robot.autoCommands.resetSwerveModuleSpeedsCMD;
 import frc.robot.commands.ElevateIntakeToSetpointCMD;
@@ -46,6 +47,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -252,6 +254,7 @@ public class RobotContainer {
 
     isDpadLeftPressed.onTrue(dismountAlgeaL2CMD);
 
+ 
 
     SmartDashboard.putData("MoveForward" ,new PathPlannerAuto("MoveForward"));
     
@@ -259,7 +262,14 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
 
-    return autoChooser.getSelected();
+   // return autoChooser.getSelected();
+
+    return 
+    new EncoderMoveRobotXY(swerveSub, new Translation2d(0,2));
+    // new SequentialCommandGroup(
+    //   new EncoderMoveRobotXY(swerveSub, new Translation2d(0,2)),
+    //   new EncoderMoveRobotXY(swerveSub, new Translation2d(0,0))
+    // );
 
   }
 }
