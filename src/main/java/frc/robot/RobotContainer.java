@@ -108,11 +108,11 @@ public class RobotContainer {
       new IdlePitchIntakeAngleCMD(coralPitcherIntakeSub)
      );
      
-     coralIntakeConsumerSub.setDefaultCommand(
-      new powerCoralIntakeCMD(
-        coralIntakeConsumerSub, 
-        () -> driverJoyStick.getRawAxis(OIConstants.kIntakeAxis),
-        () -> driverJoyStick.getRawAxis(OIConstants.kOutakeAxis) ));
+    //  coralIntakeConsumerSub.setDefaultCommand(
+    //   new powerCoralIntakeCMD(
+    //     coralIntakeConsumerSub, 
+    //     () -> driverJoyStick.getRawAxis(OIConstants.kIntakeAxis),
+    //     () -> driverJoyStick.getRawAxis(OIConstants.kOutakeAxis) ));
 
     configureBindings();
 
@@ -124,9 +124,10 @@ public class RobotContainer {
     // new JoystickButton(driverJoyStick, OIConstants.kMoveArmIdx ).whileTrue(new
     // MoveArmCMD(armsub));
 
+    
 
       new JoystickButton(driverJoyStick, 1).whileTrue(
-        new AlignToReefTagCMD(swerveSub )
+        new AlignToReefTagCMD(swerveSub, () -> driverJoyStick.getRawAxis(2))
       
     );
 
