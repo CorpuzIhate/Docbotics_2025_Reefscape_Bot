@@ -30,9 +30,11 @@ public class AlignToReefTagCMD extends Command {
     private final PIDController m_rotationController;
     private final String limelightName = "limelight-left";
     private final Supplier <Double> m_leftTriggerInput;
-    private double desiredYDistanceFromTarget_meters = 0.5;
+    private double desiredYDistanceFromTarget_meters;
 
-    private boolean isLeftBranch;
+    private boolean isXOutputDisabled;
+    private boolean isYOutputDisabled;
+
 
     private final SlewRateLimiter xLimiter  = new SlewRateLimiter(0.65,-1,0);
  
@@ -57,9 +59,18 @@ public class AlignToReefTagCMD extends Command {
         m_xController.reset();
         m_yController.reset();
         m_rotationController.reset();
+        desiredYDistanceFromTarget_meters = 0.5;
 
-        m_xController.setTolerance(0.45);
-        m_yController.setTolerance(0.45);
+        isXOutputDisabled = false;
+        isYOutputDisabled = false;
+
+        m_xController.setTolerance(0.0075);
+
+
+        m_yController.setTolerance(0.35);
+        m_yController.setP(Constants.AutoConstants.kPYController);
+
+
         m_rotationController.setTolerance(0.2);
         SmartDashboard.putNumber("m_leftTriggerInput", m_leftTriggerInput.get());
         if( m_leftTriggerInput.get() >= 0.5 ){
@@ -96,8 +107,7 @@ public class AlignToReefTagCMD extends Command {
         /**Sends telemetry related to the alignment with the reef branch. */
      
         SmartDashboard.putNumber("botPose_FwBw",xDistanceFromTarget_meters);
-        SmartDashboard.putNumber("botPose_LR", yDistanceFromTarget_meters
-        );
+        SmartDashboard.putNumber("botPose_LR", yDistanceFromTarget_meters   );
 
         
         SmartDashboard.putNumber("currentHeading", currentHeading);
@@ -114,25 +124,34 @@ public class AlignToReefTagCMD extends Command {
          * distance from the A-tag, with a 1.1 m distance from the front bumper of 
          * the robot.
           */
-        double xOutput = m_xController.calculate(xDistanceFromTarget_meters, -1); 
-        double yOutput = m_yController.calculate(yDistanceFromTarget_meters, desiredYDistanceFromTarget_meters); 
+          double xOutput = 0;
+          double yOutput = 0;
+        if(!isXOutputDisabled){
+            xOutput = m_xController.calculate(xDistanceFromTarget_meters, -1); 
+
+        }
+        if(!isYOutputDisabled){
+            yOutput = m_yController.calculate(yDistanceFromTarget_meters, desiredYDistanceFromTarget_meters); 
+        }
+        /*face directly towards the april tag at all times */
         double rotationOutput = m_rotationController.calculate(LimelightHelpers.getTX(limelightName), 0); 
         
         xOutput = xLimiter.calculate(xOutput);
       
 
-        /**applies a deadband to motor out
-         * puts.*/
-        if (m_xController.atSetpoint()){
-            xOutput = 0;
-        }
-        if (m_rotationController.atSetpoint()){
-            rotationOutput = 0;
+        /**If the the robot is at x set-point,
+         * disabled x output, and increase the p value of the 
+         * ycontroller to align the robot to its y target.
+         */
+        if (m_xController.atSetpoint()){ 
+
+            isXOutputDisabled = true;
+            m_yController.setP(Constants.AutoConstants.kPYController + 0.6);
         }
 
 
-        if ( m_yController.atSetpoint()){
-            yOutput = 0;
+        if ( m_yController.atSetpoint() && isXOutputDisabled){
+             isYOutputDisabled = true;
         }
         // Create chassis speeds and drive.
         ChassisSpeeds chassisSpeeds = new ChassisSpeeds(xOutput, -yOutput, rotationOutput);
@@ -162,11 +181,14 @@ public class AlignToReefTagCMD extends Command {
             // No target found, stop.
             return true;
         }
-        /*if we're close enough to being aligned with the 
-         * april tag, STOP.
+        /*if x and y outputs are disabled because
+        the robot is at its setpoint, end command. 
+        robot doesnt end with its at both x and y setpoints 
+        because changing the robot x position will always slightly
+        change its y position, causing a steady state error.
          */
         if(
-         m_yController.atSetpoint() && m_rotationController.atSetpoint())
+         isXOutputDisabled && isYOutputDisabled )
         {
             return true;
         }

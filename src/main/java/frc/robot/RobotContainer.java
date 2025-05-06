@@ -127,7 +127,11 @@ public class RobotContainer {
     
 
       new JoystickButton(driverJoyStick, 1).whileTrue(
-        new AlignToReefTagCMD(swerveSub, () -> driverJoyStick.getRawAxis(2))
+        new SequentialCommandGroup(
+          new AlignToReefTagCMD(swerveSub, () -> driverJoyStick.getRawAxis(2)),
+          new EncoderMoveRobotXY(swerveSub, new Translation2d(0.75,0))
+        )
+        
       
     );
 
@@ -272,7 +276,7 @@ public class RobotContainer {
    // return autoChooser.getSelected();
 
     return 
-    new EncoderMoveRobotXY(swerveSub, new Translation2d(0,2));
+    new EncoderMoveRobotXY(swerveSub, new Translation2d(0.5,0));
     // new SequentialCommandGroup(
     //   new EncoderMoveRobotXY(swerveSub, new Translation2d(0,2)),
     //   new EncoderMoveRobotXY(swerveSub, new Translation2d(0,0))

@@ -34,7 +34,7 @@ public class EncoderMoveRobotXY extends Command {
     PIDController yTranslationXContoller = 
     new PIDController(0.5, 0, 0);
     PIDController thetaTranslationXContoller = 
-    new PIDController(0.1, 0, 0);
+    new PIDController(0.075, 0, 0);
 
 /**moves robot based on desired displacements from current position, x+  forward, y+ left */
     public EncoderMoveRobotXY(
@@ -78,7 +78,7 @@ public class EncoderMoveRobotXY extends Command {
     double xOutput = xTranslationXContoller.calculate(startToCurrentRobotPose.getX(),startToDesiredRobotPose.getX());
     double yOutput = yTranslationXContoller.calculate(startToCurrentRobotPose.getY(),startToDesiredRobotPose.getY());
     /*theta controller keeps the robot at the same heading as it translates */
-    double thetaOutput = thetaTranslationXContoller.calculate(currentRotation2d.getDegrees(),initialRotation2d.getDegrees());
+    double thetaOutput = thetaTranslationXContoller.calculate(currentRotation2d.getDegrees(),0);
     /*if positon controller is at setpoint, set its output to zero. */
     if(xTranslationXContoller.atSetpoint()){
         xOutput = 0;
